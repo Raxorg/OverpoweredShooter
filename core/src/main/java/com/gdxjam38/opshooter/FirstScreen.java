@@ -3,8 +3,8 @@ package com.gdxjam38.opshooter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import player.Player;
-import touchables.Wall;
+import com.gdxjam38.opshooter.player.Player;
+import com.gdxjam38.opshooter.touchables.Wall;
 
 /**
  * First screen of the application. Displayed after the application is created.
