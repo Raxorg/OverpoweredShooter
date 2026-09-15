@@ -41,6 +41,7 @@ public class FirstScreen implements Screen {
         wall.draw(renderer);
         renderer.end();
 
+
     }
 
     @Override

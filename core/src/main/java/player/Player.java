@@ -4,12 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import player.components.Health;
 
 public class Player {
 
     public final Rectangle hitBox = new Rectangle(0, 0, 64, 64);
-    private float speed = 128;
+    public final Health health;
     private final boolean isPlayer1;
+    private float speed = 128;
 
     /**
      * true means this is the first player and will use WASD for his movement, false will use the arrows
@@ -18,6 +20,7 @@ public class Player {
      */
     public Player(boolean isPlayer1) {
         this.isPlayer1 = isPlayer1;
+        health = new Health(250);
     }
 
     public void draw(ShapeRenderer renderer) {
