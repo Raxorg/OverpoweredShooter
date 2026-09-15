@@ -1,9 +1,9 @@
-package touchables;
+package com.gdxjam38.opshooter.touchables;
 
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import player.Player;
+import com.gdxjam38.opshooter.player.Player;
 
 
 public class Wall {
