@@ -10,12 +10,14 @@ import touchables.Wall;
  * First screen of the application. Displayed after the application is created.
  */
 public class FirstScreen implements Screen {
-    private final Player player;
+    private final Player player1, player2;
+
     private final Wall wall;
-    ShapeRenderer renderer;
+    private ShapeRenderer renderer;
 
     public FirstScreen() {
-        player = new Player();
+        player1 = new Player(true);
+        player2 = new Player(false);
         wall = new Wall();
     }
 
@@ -26,11 +28,16 @@ public class FirstScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        player.move(delta);
-        wall.wall(player);
+        player1.move(delta);
+        player2.move(delta);
+        wall.wall(player1);
+        wall.wall(player2);
+
+
         ScreenUtils.clear(0, 0, 0, 1);
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        player.draw(renderer);
+        player1.draw(renderer);
+        player2.draw(renderer);
         wall.draw(renderer);
         renderer.end();
 

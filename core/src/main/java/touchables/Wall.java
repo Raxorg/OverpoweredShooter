@@ -10,9 +10,7 @@ public class Wall {
 
     Rectangle hitBox = new Rectangle(100, 100, 70, 100);
 
-    public Wall() {
 
-    }
 
     public void draw(ShapeRenderer renderer) {
         renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
