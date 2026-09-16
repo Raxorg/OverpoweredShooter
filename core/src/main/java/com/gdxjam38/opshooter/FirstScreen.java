@@ -5,10 +5,14 @@ import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gdxjam38.opshooter.logic.AttackHandler;
+import com.gdxjam38.opshooter.logic.BattleManager;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
+import com.gdxjam38.opshooter.stuff.projectiles.Projectile;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -20,6 +24,8 @@ public class FirstScreen extends ScreenAdapter {
     private final Stuff stuff;
     private final MovementHandler movementHandler;
     private final AttackHandler attackHandler;
+    private final Stage stage;
+    private final BattleManager battleManager;
 
     public FirstScreen() {
         spriteBatch = new SpriteBatch();
@@ -27,6 +33,8 @@ public class FirstScreen extends ScreenAdapter {
         stuff = new Stuff();
         movementHandler = new MovementHandler(stuff);
         attackHandler = new AttackHandler(stuff);
+        stage = new Stage(new FitViewport(1200, 700));
+        battleManager = new BattleManager(stuff, stage);
     }
 
     @Override
@@ -41,8 +49,13 @@ public class FirstScreen extends ScreenAdapter {
     }
 
     private void update(float delta) {
+        for (Projectile projectile : stuff.getProjectiles()){
+            projectile.update(stuff.getPlayers(), delta);
+        }
+        battleManager.update();
         movementHandler.update(delta);
         attackHandler.update(delta);
+        stage.act(delta);
     }
 
     private void draw() {
@@ -60,16 +73,19 @@ public class FirstScreen extends ScreenAdapter {
         for (int i = 0; i < stuff.getPlayers().size; i++) {
             stuff.getPlayers().get(i).draw(renderer);
         }
+        for (Projectile projectile : stuff.getProjectiles()){
+            projectile.draw(renderer);
+        }
+
         renderer.end();
+
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        // If the window is minimized on a desktop (LWJGL3) platform, width and height are 0, which causes problems.
-        // In that case, we don't resize anything, and wait for the window to be a normal size before updating.
-        if (width <= 0 || height <= 0) System.out.println("width and height are 0");
-
-        // Resize your screen here. The parameters represent the new window size.
+        if (width <= 0 || height <= 0) return;
+        stage.getViewport().update(width, height);
     }
 
     @Override
@@ -83,5 +99,6 @@ public class FirstScreen extends ScreenAdapter {
         System.out.println("FirstScreen dispose() called");
         renderer.dispose();
         spriteBatch.dispose();
+        stage.dispose();
     }
 }
