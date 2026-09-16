@@ -1,63 +1,76 @@
 package com.gdxjam38.opshooter.stuff.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.gdxjam38.opshooter.Assets;
+import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.player.components.Health;
 
 public class Player {
 
+    private final Sprite sprite, upSprite, downSprite, leftSprite, rightSprite;
     public final Rectangle hitBox = new Rectangle(0, 0, 64, 64);
     public final Health health;
     public final AttackControl attackControl;
-    private final boolean isPlayer1;
-    private float speed = 128;
+    public final boolean PLAYER_1;
+    public final int UP_KEY, DOWN_KEY, LEFT_KEY, RIGHT_KEY;
 
     /**
-     * true means this is the first player and will use WASD for his movement, false will use the arrows
+     * true means this is the first player, false means player 2
      *
-     * @param isPlayer1 is this the first player or not
+     * @param player1 is this the first player or not
      */
-    public Player(boolean isPlayer1) {
-        this.isPlayer1 = isPlayer1;
+    public Player(boolean player1, int upKey, int downKey, int leftKey, int rightKey) {
+        upSprite = new Sprite(Assets.playerSheet, 210, 0, 63, 77);
+        downSprite = new Sprite(Assets.playerSheet, 0, 0, 63, 77);
+        leftSprite = new Sprite(Assets.playerSheet, 140, 0, 62, 77);
+        rightSprite = new Sprite(Assets.playerSheet, 70, 0, 61, 77);
+        sprite = new Sprite(downSprite);
+        this.PLAYER_1 = player1;
         health = new Health(250);
         attackControl = new AttackControl();
+        UP_KEY = upKey;
+        DOWN_KEY = downKey;
+        LEFT_KEY = leftKey;
+        RIGHT_KEY = rightKey;
     }
 
-    public void draw(ShapeRenderer renderer) {
+    public void draw(SpriteBatch spriteBatch) {
+        sprite.draw(spriteBatch);
+    }
+
+    public void drawDebug(ShapeRenderer renderer) {
         renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
-    public void move(float delta) {
-        boolean up, down, left, right;
-        if (isPlayer1) {
-            up = Gdx.input.isKeyPressed(Input.Keys.W);
-            down = Gdx.input.isKeyPressed(Input.Keys.S);
-            left = Gdx.input.isKeyPressed(Input.Keys.A);
-            right = Gdx.input.isKeyPressed(Input.Keys.D);
-        } else {
-            up = Gdx.input.isKeyPressed(Input.Keys.UP);
-            down = Gdx.input.isKeyPressed(Input.Keys.DOWN);
-            left = Gdx.input.isKeyPressed(Input.Keys.LEFT);
-            right = Gdx.input.isKeyPressed(Input.Keys.RIGHT);
-        }
-        movement(delta, up, down, left, right);
+    public void translateX(float amount) {
+        hitBox.x += amount;
+        sprite.translateX(amount);
     }
 
-    private void movement(float delta, boolean up, boolean down, boolean left, boolean right) {
-        if (left) {
-            hitBox.x -= speed * delta;
+    public void translateY(float amount) {
+        hitBox.y += amount;
+        sprite.translateY(amount);
+    }
+
+    public void setDirection(Direction direction) {
+        switch (direction) {
+            case UP:
+                sprite.set(upSprite);
+                break;
+            case DOWN:
+                sprite.set(downSprite);
+                break;
+            case LEFT:
+                sprite.set(leftSprite);
+                break;
+            case RIGHT:
+                sprite.set(rightSprite);
+                break;
         }
-        if (right) {
-            hitBox.x += speed * delta;
-        }
-        if (up) {
-            hitBox.y += speed * delta;
-        }
-        if (down) {
-            hitBox.y -= speed * delta;
-        }
+        sprite.setPosition(hitBox.x, hitBox.y);
     }
 }

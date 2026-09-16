@@ -3,6 +3,7 @@ package com.gdxjam38.opshooter.stuff.touchables;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.gdxjam38.opshooter.stuff.player.Player;
 
@@ -19,6 +20,10 @@ public class Obstacle {
 
     public void draw(SpriteBatch spriteBatch) {
         sprite.draw(spriteBatch);
+    }
+
+    public void drawDebug(ShapeRenderer renderer) {
+        renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
     public void handleCollision(Player player) {

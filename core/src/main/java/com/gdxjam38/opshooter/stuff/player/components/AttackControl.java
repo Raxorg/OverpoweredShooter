@@ -1,13 +1,13 @@
 package com.gdxjam38.opshooter.stuff.player.components;
 
+import static com.badlogic.gdx.graphics.Color.CLEAR;
+import static com.gdxjam38.opshooter.Constants.ARROW_HEIGHT;
+import static com.gdxjam38.opshooter.Constants.ARROW_WIDTH;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gdxjam38.opshooter.Assets;
-
-import static com.badlogic.gdx.graphics.Color.CLEAR;
-import static com.gdxjam38.opshooter.Constants.ARROW_HEIGHT;
-import static com.gdxjam38.opshooter.Constants.ARROW_WIDTH;
 
 public class AttackControl {
 
@@ -15,7 +15,7 @@ public class AttackControl {
     private boolean active;
 
     public AttackControl() {
-        arrow = new Sprite(Assets.ARROW);
+        arrow = new Sprite(Assets.arrow);
         arrow.setSize(ARROW_WIDTH, ARROW_HEIGHT);
         arrow.setColor(CLEAR);
         arrow.setOrigin(0f, arrow.getHeight() * 0.5f);
@@ -44,5 +44,4 @@ public class AttackControl {
     public void setActive(boolean active) {
         this.active = active;
     }
-
 }

@@ -11,10 +11,10 @@ import com.gdxjam38.opshooter.stuff.player.Player;
 import java.util.Objects;
 
 public class BattleManager {
+
     private final Label[] playerHp = new Label[2];
     private final Array<Player> players;
     private final Stage stage;
-
 
     public BattleManager(Stuff stuff, Stage stage) {
         players = stuff.getPlayers();
@@ -27,8 +27,8 @@ public class BattleManager {
         table.bottom();
         table.setFillParent(true);
 
-        playerHp[0] = new Label("player1Hp", Assets.SKIN);
-        playerHp[1] = new Label("player2Hp", Assets.SKIN);
+        playerHp[0] = new Label("player1Hp", Assets.skin);
+        playerHp[1] = new Label("player2Hp", Assets.skin);
 
         for (Label playerHp : playerHp) {
             table.add(playerHp).row();
@@ -48,4 +48,3 @@ public class BattleManager {
         }
     }
 }
-

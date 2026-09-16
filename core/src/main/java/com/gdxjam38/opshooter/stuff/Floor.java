@@ -19,7 +19,7 @@ public class Floor {
         Sprite tile;
         for (int c = 0; c < tiles.length; c++) {
             for (int r = 0; r < tiles[c].length; r++) {
-                tiles[c][r] = new Sprite(Assets.TILE_1);
+                tiles[c][r] = new Sprite(Assets.tile1);
                 tile = tiles[c][r];
                 tile.setSize(TILE_SIZE, TILE_SIZE);
                 tile.setColor(new Color(WHITE).lerp(BLACK, MathUtils.random(0.3f)));

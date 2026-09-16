@@ -6,15 +6,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets {
 
-    public static final Skin SKIN = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
-    public static final Texture TILE_1 = new Texture(Gdx.files.internal("tile1.png"));
-    public static final Texture BUSH_1 = new Texture(Gdx.files.internal("bush1.png"));
-    public static final Texture ARROW = new Texture(Gdx.files.internal("arrow2.png"));
+    public static final Skin skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
+    public static final Texture tile1 = new Texture("tile1.png");
+    public static final Texture bush1 = new Texture("bush1.png");
+    public static final Texture arrow = new Texture("arrow2.png");
+    public static final Texture playerSheet = new Texture("playerSheet.png");
 
-    public static void dispose() {
-        SKIN.dispose();
-        TILE_1.dispose();
-        BUSH_1.dispose();
-        ARROW.dispose();
+    /**
+     * Disposes {@link FirstScreen} related assets
+     */
+    public static void disposeFirst() {
+        skin.dispose();
+        tile1.dispose();
+        bush1.dispose();
+        arrow.dispose();
+        playerSheet.dispose();
+    }
+
+    /**
+     * Disposes {@link SplashScreen} related assets
+     */
+    public static void disposeSplash() {
+        // TODO: 9/16/2026 Dispose splash assets
     }
 }
