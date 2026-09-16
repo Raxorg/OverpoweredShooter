@@ -1,6 +1,6 @@
 package com.gdxjam38.opshooter;
 
-import static com.badlogic.gdx.graphics.Color.BLACK;
+import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -47,16 +47,17 @@ public class FirstScreen extends ScreenAdapter {
     }
 
     private void draw() {
-        ScreenUtils.clear(BLACK);
+        ScreenUtils.clear(CLEAR_COLOR);
 
         spriteBatch.begin();
-        for (Player player : stuff.getPlayers()){
+        stuff.getFloor().draw(spriteBatch);
+        for (Player player : stuff.getPlayers()) {
             player.attackControl.draw(spriteBatch);
         }
         spriteBatch.end();
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        for (Player player : stuff.getPlayers()){
+        for (Player player : stuff.getPlayers()) {
             player.draw(renderer);
         }
         stuff.getWall().draw(renderer);
