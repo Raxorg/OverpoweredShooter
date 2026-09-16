@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
+import com.gdxjam38.opshooter.stuff.player.Player;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -49,13 +50,15 @@ public class FirstScreen extends ScreenAdapter {
         ScreenUtils.clear(BLACK);
 
         spriteBatch.begin();
-        stuff.getPlayer1().attackControl.draw(spriteBatch);
-        stuff.getPlayer2().attackControl.draw(spriteBatch);
+        for (Player player : stuff.getPlayers()){
+            player.attackControl.draw(spriteBatch);
+        }
         spriteBatch.end();
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        stuff.getPlayer1().draw(renderer);
-        stuff.getPlayer2().draw(renderer);
+        for (Player player : stuff.getPlayers()){
+            player.draw(renderer);
+        }
         stuff.getWall().draw(renderer);
         renderer.end();
     }
@@ -79,5 +82,6 @@ public class FirstScreen extends ScreenAdapter {
     public void dispose() {
         System.out.println("FirstScreen dispose() called");
         renderer.dispose();
+        spriteBatch.dispose();
     }
 }

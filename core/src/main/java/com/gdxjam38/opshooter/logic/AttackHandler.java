@@ -8,20 +8,20 @@ import static com.badlogic.gdx.graphics.Color.RED;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 
 public class AttackHandler {
 
-    private final Player player1, player2;
     private final AttackControl attackControl1, attackControl2;
+    private final Array<Player> players;
 
     public AttackHandler(Stuff stuff) {
-        player1 = stuff.getPlayer1();
-        player2 = stuff.getPlayer2();
-        attackControl1 = player1.attackControl;
-        attackControl2 = player2.attackControl;
+        players = stuff.getPlayers();
+        attackControl1 = stuff.getPlayer1().attackControl;
+        attackControl2 = stuff.getPlayer2().attackControl;
     }
 
     public void update(float delta) {
@@ -51,15 +51,13 @@ public class AttackHandler {
     }
 
     private void updateControls(float delta) {
-        float x = player1.hitBox.x + player1.hitBox.width * 0.5f;
-        float y = player1.hitBox.y + player1.hitBox.height * 0.5f;
-        attackControl1.setPosition(x, y);
+        for (Player player : players){
+            AttackControl attackControl = player.attackControl;
+            float x = player.hitBox.x + player.hitBox.width * 0.5f;
+            float y = player.hitBox.y + player.hitBox.height * 0.5f;
+            attackControl.setPosition(x, y);
 
-        x = player2.hitBox.x + player2.hitBox.width * 0.5f;
-        y = player2.hitBox.y + player2.hitBox.height * 0.5f;
-        attackControl2.setPosition(x, y);
-
-        attackControl1.rotate(180f * delta);
-        attackControl2.rotate(180f * delta);
+            attackControl.rotate(180f * delta);
+        }
     }
 }
