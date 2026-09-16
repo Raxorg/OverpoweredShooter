@@ -4,12 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.player.components.Health;
 
 public class Player {
 
     public final Rectangle hitBox = new Rectangle(0, 0, 64, 64);
     public final Health health;
+    public final AttackControl attackControl;
     private final boolean isPlayer1;
     private float speed = 128;
 
@@ -21,6 +23,7 @@ public class Player {
     public Player(boolean isPlayer1) {
         this.isPlayer1 = isPlayer1;
         health = new Health(250);
+        attackControl = new AttackControl();
     }
 
     public void draw(ShapeRenderer renderer) {
@@ -58,4 +61,3 @@ public class Player {
         }
     }
 }
-
