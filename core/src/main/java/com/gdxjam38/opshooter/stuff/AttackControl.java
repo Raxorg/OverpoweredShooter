@@ -20,7 +20,7 @@ public class AttackControl {
         arrow.draw(spriteBatch);
     }
 
-    public void setPosition() {
+    public void setPosition(float x, float y) {
 
     }
 

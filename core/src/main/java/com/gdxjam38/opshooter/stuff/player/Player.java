@@ -1,10 +1,10 @@
-package com.gdxjam38.opshooter.player;
+package com.gdxjam38.opshooter.stuff.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.gdxjam38.opshooter.player.components.Health;
+import com.gdxjam38.opshooter.stuff.player.components.Health;
 
 public class Player {
 

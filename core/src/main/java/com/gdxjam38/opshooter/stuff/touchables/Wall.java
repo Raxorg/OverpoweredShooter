@@ -1,21 +1,18 @@
-package com.gdxjam38.opshooter.touchables;
-
+package com.gdxjam38.opshooter.stuff.touchables;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.gdxjam38.opshooter.player.Player;
-
+import com.gdxjam38.opshooter.stuff.player.Player;
 
 public class Wall {
 
     Rectangle hitBox = new Rectangle(100, 100, 70, 100);
 
-
     public void draw(ShapeRenderer renderer) {
         renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
-    public void wall(Player player) {
+    public void handleCollision(Player player) {
         if (!hitBox.overlaps(player.hitBox))
             return;
         Rectangle e = player.hitBox;
@@ -35,4 +32,3 @@ public class Wall {
         e.y += (overlapBottom < overlapTop) ? -minOverlapY : minOverlapY;
     }
 }
-
