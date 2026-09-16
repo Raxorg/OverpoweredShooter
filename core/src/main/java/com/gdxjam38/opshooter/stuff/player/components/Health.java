@@ -1,4 +1,4 @@
-package player.components;
+package com.gdxjam38.opshooter.stuff.player.components;
 
 /**
  * This class is typically used as a component in other classes to grant them health and its methods.
