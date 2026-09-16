@@ -1,15 +1,24 @@
 package com.gdxjam38.opshooter.stuff.touchables;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.gdxjam38.opshooter.stuff.player.Player;
 
-public class Wall {
+public class Obstacle {
 
-    Rectangle hitBox = new Rectangle(100, 100, 70, 100);
+    private final Sprite sprite;
+    private final Rectangle hitBox = new Rectangle();
 
-    public void draw(ShapeRenderer renderer) {
-        renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
+    public Obstacle(Texture texture, float width, float height) {
+        sprite = new Sprite(texture);
+        sprite.setSize(width, height);
+        hitBox.setSize(width, height);
+    }
+
+    public void draw(SpriteBatch spriteBatch) {
+        sprite.draw(spriteBatch);
     }
 
     public void handleCollision(Player player) {
@@ -30,5 +39,10 @@ public class Wall {
             return;
         }
         e.y += (overlapBottom < overlapTop) ? -minOverlapY : minOverlapY;
+    }
+
+    public void setPosition(float x, float y) {
+        sprite.setPosition(x, y);
+        hitBox.setPosition(x, y);
     }
 }

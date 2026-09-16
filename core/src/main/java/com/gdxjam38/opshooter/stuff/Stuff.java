@@ -1,21 +1,23 @@
 package com.gdxjam38.opshooter.stuff;
 
 import com.badlogic.gdx.utils.Array;
+import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.stuff.player.Player;
-import com.gdxjam38.opshooter.stuff.touchables.Wall;
+import com.gdxjam38.opshooter.stuff.touchables.Obstacle;
 
 public class Stuff {
 
     private final Floor floor;
     private final Player player1, player2;
-    private final Wall wall;
+    private final Obstacle bush;
     private final Array<Player> players;
 
     public Stuff() {
         floor = new Floor();
         player1 = new Player(true);
         player2 = new Player(false);
-        wall = new Wall();
+        bush = new Obstacle(Assets.BUSH_1, 75f, 75f);
+        bush.setPosition(200f, 100f);
         players = new Array<>();
         players.add(player1);
         players.add(player2);
@@ -33,8 +35,8 @@ public class Stuff {
         return player2;
     }
 
-    public Wall getWall() {
-        return wall;
+    public Obstacle getBush() {
+        return bush;
     }
     public Array<Player> getPlayers(){
         return players;

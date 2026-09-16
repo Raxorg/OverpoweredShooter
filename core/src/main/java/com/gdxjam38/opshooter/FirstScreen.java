@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
-import com.gdxjam38.opshooter.stuff.player.Player;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -51,16 +50,16 @@ public class FirstScreen extends ScreenAdapter {
 
         spriteBatch.begin();
         stuff.getFloor().draw(spriteBatch);
-        for (Player player : stuff.getPlayers()) {
-            player.attackControl.draw(spriteBatch);
+        for (int i = 0; i < stuff.getPlayers().size; i++) {
+            stuff.getPlayers().get(i).attackControl.draw(spriteBatch);
         }
+        stuff.getBush().draw(spriteBatch);
         spriteBatch.end();
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        for (Player player : stuff.getPlayers()) {
-            player.draw(renderer);
+        for (int i = 0; i < stuff.getPlayers().size; i++) {
+            stuff.getPlayers().get(i).draw(renderer);
         }
-        stuff.getWall().draw(renderer);
         renderer.end();
     }
 

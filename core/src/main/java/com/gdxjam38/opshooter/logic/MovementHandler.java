@@ -3,22 +3,23 @@ package com.gdxjam38.opshooter.logic;
 import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
-import com.gdxjam38.opshooter.stuff.touchables.Wall;
+import com.gdxjam38.opshooter.stuff.touchables.Obstacle;
 
 public class MovementHandler {
 
-    private final Wall wall;
+    private final Obstacle obstacle;
     private final Array<Player> players;
 
     public MovementHandler(Stuff stuff) {
-        wall = stuff.getWall();
+        obstacle = stuff.getBush();
         players = stuff.getPlayers();
     }
 
     public void update(float delta) {
-        for (Player player : players) {
+        for (int i = 0; i < players.size; i++) {
+            Player player = players.get(i);
             player.move(delta);
-            wall.handleCollision(player);
+            obstacle.handleCollision(player);
         }
     }
 }
