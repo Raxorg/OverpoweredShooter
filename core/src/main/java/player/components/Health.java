@@ -62,9 +62,9 @@ public class Health {
 
 
     /**
-     * @return hp percentage from 0% to 100%
+     * @return hp percentage 0 to 1.
      */
-    public float getHpPercentage() {
+    public float getHpRatio() {
         return maxHp != 0 ? (float) hp / maxHp : 0;
     }
 }
