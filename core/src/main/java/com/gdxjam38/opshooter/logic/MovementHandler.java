@@ -7,6 +7,7 @@ import static com.gdxjam38.opshooter.Direction.RIGHT;
 import static com.gdxjam38.opshooter.Direction.UP;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
@@ -37,6 +38,7 @@ public class MovementHandler {
         left = Gdx.input.isKeyPressed(player.leftKey);
         right = Gdx.input.isKeyPressed(player.rightKey);
         movePlayer(player, delta, up, down, left, right);
+        clampPosition(player);
     }
 
     private void movePlayer(Player player, float delta, boolean up, boolean down, boolean left, boolean right) {
@@ -59,5 +61,11 @@ public class MovementHandler {
         if (xTranslation < 0f) player.setDirection(LEFT);
         if (yTranslation > 0f) player.setDirection(UP);
         if (yTranslation < 0f) player.setDirection(DOWN);
+    }
+
+    private void clampPosition(Player player) {
+        float x = MathUtils.clamp(player.hitBox.x, 0f, 1200f - 64f);
+        float y = MathUtils.clamp(player.hitBox.y, 0f, 700f - 64f);
+        player.setPosition(x, y);
     }
 }

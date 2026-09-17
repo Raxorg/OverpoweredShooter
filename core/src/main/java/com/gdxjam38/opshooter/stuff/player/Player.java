@@ -49,6 +49,11 @@ public class Player {
         sprite.translateY(amount);
     }
 
+    public void setPosition(float x, float y) {
+        hitBox.setPosition(x, y);
+        sprite.setPosition(x, y);
+    }
+
     public void setDirection(Direction direction) {
         switch (direction) {
             case UP:
