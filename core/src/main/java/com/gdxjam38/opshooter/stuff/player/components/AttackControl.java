@@ -45,7 +45,11 @@ public class AttackControl {
         this.active = active;
     }
 
+    /**
+     *
+     * @return the rotation degree of the arrow from 0 to 360.
+     */
     public float getRotation() {
-        return arrow.getRotation();
+        return arrow.getRotation() % 360;
     }
 }

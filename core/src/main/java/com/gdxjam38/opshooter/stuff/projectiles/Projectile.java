@@ -10,17 +10,26 @@ import java.util.Objects;
 
 public abstract class Projectile {
 
-    protected final Vector2 velocity = new Vector2(200,21);
+    protected final Vector2 velocity = new Vector2();
     public final Rectangle hitBox;
-    private final Player owner;
+    protected final Player owner;
     private boolean dead = false;
+    private final float speed = 512;
 
-    public Projectile(Player owner,float x, float y) {
-        hitBox = new Rectangle(x, y, 22, 22);
+    public Projectile(Player owner, float rotation,  float x, float y) {
         this.owner = Objects.requireNonNull(owner, "owner cannot be null");
+        hitBox = new Rectangle(x, y, 22, 22);
+        rotation = (float) Math.toRadians(rotation);
+        float veloX = (float) Math.cos(rotation);
+        float veloY = (float) Math.sin(rotation);
+        velocity.set(veloX, veloY);
     }
 
-    public void draw(ShapeRenderer renderer){
+    public Projectile(Player owner, float rotation) {
+        this(owner, rotation, owner.hitBox.x, owner.hitBox.y);
+    }
+
+    public void draw(ShapeRenderer renderer) {
         if (dead) return;
         renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
@@ -32,14 +41,14 @@ public abstract class Projectile {
         if (dead) return;
         for (Player player : players) {
             if (player == owner) continue;
-            if (hitBox.overlaps(player.hitBox)){
+            if (hitBox.overlaps(player.hitBox)) {
                 onTouch(player);
                 dead = true;
                 return;
             }
         }
-        hitBox.x += velocity.x * delta;
-        hitBox.y += velocity.y * delta;
+        hitBox.x += velocity.x * speed * delta;
+        hitBox.y += velocity.y * speed * delta;
     }
 
 }

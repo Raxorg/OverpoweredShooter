@@ -1,11 +1,5 @@
 package com.gdxjam38.opshooter.logic;
 
-import static com.badlogic.gdx.Input.Keys.F;
-import static com.badlogic.gdx.Input.Keys.P;
-import static com.badlogic.gdx.graphics.Color.BLUE;
-import static com.badlogic.gdx.graphics.Color.CLEAR;
-import static com.badlogic.gdx.graphics.Color.RED;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Array;
@@ -14,6 +8,10 @@ import com.gdxjam38.opshooter.stuff.player.Player;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.projectiles.Bullet;
 import com.gdxjam38.opshooter.stuff.projectiles.Projectile;
+
+import static com.badlogic.gdx.Input.Keys.F;
+import static com.badlogic.gdx.Input.Keys.P;
+import static com.badlogic.gdx.graphics.Color.*;
 
 public class AttackHandler {
 
@@ -37,17 +35,16 @@ public class AttackHandler {
     }
 
     private void updateInput() {
-        if (Gdx.input.isKeyJustPressed(F)) {
-            if (attackControl1.isActive()) {
-                releaseAttack(attackControl1);
-                projectiles.add(new Bullet(player1, player1.hitBox.x, player1.hitBox.y));
-            } else showAim(attackControl1, BLUE);
-        }
-        if (Gdx.input.isKeyJustPressed(P)) {
-            if (attackControl2.isActive()) {
-                releaseAttack(attackControl2);
-                projectiles.add(new Bullet(player2, player2.hitBox.x, player2.hitBox.y));
-            } else showAim(attackControl2, RED);
+        handleControl(F, player1, BLUE, attackControl1);
+        handleControl(P, player2, RED, attackControl2);
+    }
+
+    private void handleControl(int key, Player player, Color color, AttackControl attackControl) {
+        if (Gdx.input.isKeyJustPressed(key)) {
+            if (attackControl.isActive()) {
+                releaseAttack(attackControl);
+                projectiles.add(new Bullet(player, attackControl.getRotation()));
+            } else showAim(attackControl, color);
         }
     }
 
