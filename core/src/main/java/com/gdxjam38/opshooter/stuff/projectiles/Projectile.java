@@ -6,14 +6,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.player.Player;
 
+import java.util.Objects;
+
 public abstract class Projectile {
 
     protected final Vector2 velocity = new Vector2(200,21);
     public final Rectangle hitBox;
+    private final Player owner;
     private boolean dead = false;
 
-    public Projectile(float x, float y) {
+    public Projectile(Player owner,float x, float y) {
         hitBox = new Rectangle(x, y, 22, 22);
+        this.owner = Objects.requireNonNull(owner, "owner cannot be null");
     }
 
     public void draw(ShapeRenderer renderer){
@@ -27,6 +31,7 @@ public abstract class Projectile {
     public void update(Array<Player> players, float delta) {
         if (dead) return;
         for (Player player : players) {
+            if (player == owner) continue;
             if (hitBox.overlaps(player.hitBox)){
                 onTouch(player);
                 dead = true;

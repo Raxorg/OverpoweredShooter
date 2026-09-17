@@ -40,13 +40,13 @@ public class AttackHandler {
         if (Gdx.input.isKeyJustPressed(F)) {
             if (attackControl1.isActive()) {
                 releaseAttack(attackControl1);
-                projectiles.add(new Bullet(player1.hitBox.x + 20, player1.hitBox.y));
+                projectiles.add(new Bullet(player1, player1.hitBox.x, player1.hitBox.y));
             } else showAim(attackControl1, BLUE);
         }
         if (Gdx.input.isKeyJustPressed(P)) {
             if (attackControl2.isActive()) {
                 releaseAttack(attackControl2);
-                projectiles.add(new Bullet(player2.hitBox.x + 70, player2.hitBox.y));
+                projectiles.add(new Bullet(player2, player2.hitBox.x, player2.hitBox.y));
             } else showAim(attackControl2, RED);
         }
     }
