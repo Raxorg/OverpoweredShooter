@@ -3,6 +3,8 @@ package com.gdxjam38.opshooter.stuff.projectiles;
 import com.gdxjam38.opshooter.stuff.player.Player;
 
 public class Bullet extends Projectile {
+
+
     public Bullet(Player owner, float rotation, float x, float y) {
         super(owner, rotation, x, y);
     }
@@ -13,6 +15,6 @@ public class Bullet extends Projectile {
 
     @Override
     public void onTouch(Player player) {
-        player.health.modifyHp(-20);
+        player.takeDamage(20);
     }
 }

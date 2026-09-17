@@ -7,10 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class Assets {
 
     public static final Skin skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
-    public static final Texture tile1 = new Texture("tile1.png");
-    public static final Texture bush1 = new Texture("bush1.png");
-    public static final Texture arrow = new Texture("arrow2.png");
-    public static final Texture playerSheet = new Texture("playerSheet.png");
+    public static final Texture tile1 = new Texture(Gdx.files.internal("tile1.png"));
+    public static final Texture bush1 = new Texture(Gdx.files.internal("bush1.png"));
+    public static final Texture arrow = new Texture(Gdx.files.internal("arrow2.png"));
+    public static final Texture playerSheet = new Texture(Gdx.files.internal("playerSheet.png"));
 
     /**
      * Disposes {@link FirstScreen} related assets

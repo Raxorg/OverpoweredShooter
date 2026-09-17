@@ -12,6 +12,7 @@ import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.BattleManager;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
+import com.gdxjam38.opshooter.stuff.player.Player;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -55,6 +56,9 @@ public class FirstScreen extends ScreenAdapter {
         movementHandler.update(delta);
         attackHandler.update(delta);
         stage.act(delta);
+        for (Player player : stuff.getPlayers()){
+            player.update(delta);
+        }
     }
 
     private void draw() {

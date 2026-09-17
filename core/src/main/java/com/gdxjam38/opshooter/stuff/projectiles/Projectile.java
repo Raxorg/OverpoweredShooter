@@ -14,11 +14,12 @@ public abstract class Projectile {
     public final Rectangle hitBox;
     protected final Player owner;
     private boolean dead = false;
-    private final float speed = 512;
+    protected float speed = 512;
 
-    public Projectile(Player owner, float rotation,  float x, float y) {
+    public Projectile(Player owner, float rotation, float x, float y) {
         this.owner = Objects.requireNonNull(owner, "owner cannot be null");
         hitBox = new Rectangle(x, y, 22, 22);
+
         rotation = (float) Math.toRadians(rotation);
         float veloX = (float) Math.cos(rotation);
         float veloY = (float) Math.sin(rotation);

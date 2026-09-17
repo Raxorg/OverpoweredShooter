@@ -15,6 +15,10 @@ public class BattleManager {
     private final Label[] playerHp = new Label[2];
     private final Array<Player> players;
     private final Stage stage;
+    /**
+     * this is to avoid creating a string every frame for no reason
+     */
+    private final int[] changedHp = new int[2];
 
     public BattleManager(Stuff stuff, Stage stage) {
         players = stuff.getPlayers();
@@ -27,8 +31,8 @@ public class BattleManager {
         table.bottom();
         table.setFillParent(true);
 
-        playerHp[0] = new Label("player1Hp", Assets.skin);
-        playerHp[1] = new Label("player2Hp", Assets.skin);
+        playerHp[0] = new Label("", Assets.skin);
+        playerHp[1] = new Label("", Assets.skin);
 
         for (Label playerHp : playerHp) {
             table.add(playerHp).row();
@@ -41,11 +45,10 @@ public class BattleManager {
     }
 
     private void updateLabels() {
-        int changedHp = 0;
         for (int i = 0; i < playerHp.length; i++) {
-            if (changedHp == players.get(i).health.getHp()) continue;
+            if (changedHp[i] == players.get(i).health.getHp()) continue;
             playerHp[i].setText("player" + (i + 1) + " health: " + players.get(i).health.getHp());
-            changedHp = players.get(i).health.getHp();
+            changedHp[i] = players.get(i).health.getHp();
         }
     }
 }
