@@ -38,8 +38,8 @@ public class Player {
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
-                    greenness = Math.max(greenness + 0.1f, 1);
-                    blueness = Math.max(blueness + 0.1f, 1);
+                    greenness = Math.min(greenness + 0.1f, 1);
+                    blueness = Math.min(blueness + 0.1f, 1);
 
                     sprite.setColor(1, greenness, blueness, 1);
                 }
