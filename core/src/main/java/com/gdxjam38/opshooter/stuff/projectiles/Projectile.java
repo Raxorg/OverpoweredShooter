@@ -11,23 +11,21 @@ import java.util.Objects;
 public abstract class Projectile {
 
     protected final Vector2 velocity = new Vector2();
+    protected final Vector2 position = new Vector2();
     public final Rectangle hitBox;
     protected final Player owner;
     private boolean dead = false;
     protected float speed = 512;
 
-    public Projectile(Player owner, float rotation, float x, float y) {
+    public Projectile(Player owner, float rotation) {
         this.owner = Objects.requireNonNull(owner, "owner cannot be null");
-        hitBox = new Rectangle(x, y, 22, 22);
+        owner.hitBox.getCenter(position);
+        hitBox = new Rectangle(position.x, position.y, 22, 22);
 
         rotation = (float) Math.toRadians(rotation);
         float veloX = (float) Math.cos(rotation);
         float veloY = (float) Math.sin(rotation);
         velocity.set(veloX, veloY);
-    }
-
-    public Projectile(Player owner, float rotation) {
-        this(owner, rotation, owner.hitBox.x, owner.hitBox.y);
     }
 
     public void draw(ShapeRenderer renderer) {
