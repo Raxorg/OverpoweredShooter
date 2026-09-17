@@ -45,6 +45,7 @@ public class BattleManager {
         for (int i = 0; i < playerHp.length; i++) {
             if (changedHp == players.get(i).health.getHp()) continue;
             playerHp[i].setText("player" + (i + 1) + " health: " + players.get(i).health.getHp());
+            changedHp = players.get(i).health.getHp();
         }
     }
 }
