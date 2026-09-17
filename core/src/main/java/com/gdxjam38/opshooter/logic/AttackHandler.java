@@ -38,18 +38,16 @@ public class AttackHandler {
 
     private void updateInput() {
         if (Gdx.input.isKeyJustPressed(F)) {
-            if (attackControl1.isActive()){
+            if (attackControl1.isActive()) {
                 releaseAttack(attackControl1);
                 projectiles.add(new Bullet(player1.hitBox.x + 20, player1.hitBox.y));
-            }
-            else showAim(attackControl1, RED);
+            } else showAim(attackControl1, BLUE);
         }
         if (Gdx.input.isKeyJustPressed(P)) {
             if (attackControl2.isActive()) {
                 releaseAttack(attackControl2);
                 projectiles.add(new Bullet(player2.hitBox.x + 70, player2.hitBox.y));
-            }
-            else showAim(attackControl2, BLUE);
+            } else showAim(attackControl2, RED);
         }
     }
 
@@ -65,7 +63,8 @@ public class AttackHandler {
     }
 
     private void updateControls(float delta) {
-        for (Player player : players){
+        for (int i = 0; i < players.size; i++) {
+            Player player = players.get(i);
             AttackControl attackControl = player.attackControl;
             float x = player.hitBox.x + player.hitBox.width * 0.5f;
             float y = player.hitBox.y + player.hitBox.height * 0.5f;

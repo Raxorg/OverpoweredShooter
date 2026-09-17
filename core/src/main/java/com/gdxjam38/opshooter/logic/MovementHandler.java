@@ -32,10 +32,10 @@ public class MovementHandler {
 
     private void handleInput(Player player, float delta) {
         boolean up, down, left, right;
-        up = Gdx.input.isKeyPressed(player.UP_KEY);
-        down = Gdx.input.isKeyPressed(player.DOWN_KEY);
-        left = Gdx.input.isKeyPressed(player.LEFT_KEY);
-        right = Gdx.input.isKeyPressed(player.RIGHT_KEY);
+        up = Gdx.input.isKeyPressed(player.upKey);
+        down = Gdx.input.isKeyPressed(player.downKey);
+        left = Gdx.input.isKeyPressed(player.leftKey);
+        right = Gdx.input.isKeyPressed(player.rightKey);
         movePlayer(player, delta, up, down, left, right);
     }
 

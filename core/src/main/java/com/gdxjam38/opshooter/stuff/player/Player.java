@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.player.components.Health;
@@ -12,30 +11,24 @@ import com.gdxjam38.opshooter.stuff.player.components.Health;
 public class Player {
 
     private final Sprite sprite, upSprite, downSprite, leftSprite, rightSprite;
+    public final int upKey, downKey, leftKey, rightKey;
     public final Rectangle hitBox = new Rectangle(0, 0, 64, 64);
     public final Health health;
     public final AttackControl attackControl;
-    public final boolean PLAYER_1;
-    public final int UP_KEY, DOWN_KEY, LEFT_KEY, RIGHT_KEY;
 
-    /**
-     * true means this is the first player, false means player 2
-     *
-     * @param player1 is this the first player or not
-     */
-    public Player(boolean player1, int upKey, int downKey, int leftKey, int rightKey) {
-        upSprite = new Sprite(Assets.playerSheet, 210, 0, 63, 77);
-        downSprite = new Sprite(Assets.playerSheet, 0, 0, 63, 77);
-        leftSprite = new Sprite(Assets.playerSheet, 140, 0, 62, 77);
-        rightSprite = new Sprite(Assets.playerSheet, 70, 0, 61, 77);
+    public Player(Sprite upSprite, Sprite downSprite, Sprite leftSprite, Sprite rightSprite,
+                  int upKey, int downKey, int leftKey, int rightKey) {
+        this.upSprite = upSprite;
+        this.downSprite = downSprite;
+        this.leftSprite = leftSprite;
+        this.rightSprite = rightSprite;
         sprite = new Sprite(downSprite);
-        this.PLAYER_1 = player1;
         health = new Health(250);
         attackControl = new AttackControl();
-        UP_KEY = upKey;
-        DOWN_KEY = downKey;
-        LEFT_KEY = leftKey;
-        RIGHT_KEY = rightKey;
+        this.upKey = upKey;
+        this.downKey = downKey;
+        this.leftKey = leftKey;
+        this.rightKey = rightKey;
     }
 
     public void draw(SpriteBatch spriteBatch) {
