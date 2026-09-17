@@ -32,7 +32,7 @@ public class Player {
         this.rightKey = rightKey;
     }
 
-    private float greenness, blueness;
+    private float greenness = 1, blueness = 1;
     public void update(float delta){
         if (greenness <= 1)
             Timer.schedule(new Timer.Task() {
