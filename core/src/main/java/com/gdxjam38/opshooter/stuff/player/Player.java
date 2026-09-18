@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Timer;
 import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
-import com.gdxjam38.opshooter.stuff.player.components.Health;
+import com.gdxjam38.opshooter.stuff.player.components.Health;import com.gdxjam38.opshooter.stuff.player.components.Inventory;import com.gdxjam38.opshooter.stuff.weapons.Gun;
 
 public class Player {
 
@@ -16,6 +16,7 @@ public class Player {
     public final Rectangle hitBox = new Rectangle(0, 0, 64, 64);
     public final Health health;
     public final AttackControl attackControl;
+    public final Inventory inventory = new Inventory();
 
     public Player(Sprite upSprite, Sprite downSprite, Sprite leftSprite, Sprite rightSprite,
                   int upKey, int downKey, int leftKey, int rightKey) {
@@ -30,6 +31,7 @@ public class Player {
         this.downKey = downKey;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
+        inventory.addWeapon(new Gun());
     }
 
     private float greenness = 1, blueness = 1;

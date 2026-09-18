@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.stuff.player.Player;
-import com.gdxjam38.opshooter.stuff.projectiles.Projectile;
+import com.gdxjam38.opshooter.stuff.weapons.Gun;import com.gdxjam38.opshooter.stuff.weapons.projectiles.Projectile;
 import com.gdxjam38.opshooter.stuff.touchables.Obstacle;
 
 public class Stuff {
@@ -22,7 +22,6 @@ public class Stuff {
     private final Player player1, player2;
     private final Obstacle bush;
     private final Array<Player> players;
-    private final Array<Projectile> projectiles;
 
     public Stuff() {
         floor = new Floor();
@@ -47,7 +46,6 @@ public class Stuff {
         players.add(player1);
         players.add(player2);
 
-        projectiles = new Array<>();
     }
 
     public Floor getFloor() {
@@ -70,7 +68,4 @@ public class Stuff {
         return players;
     }
 
-    public Array<Projectile> getProjectiles() {
-        return projectiles;
-    }
 }
