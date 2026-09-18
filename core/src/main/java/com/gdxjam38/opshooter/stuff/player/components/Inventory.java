@@ -31,10 +31,11 @@ public class Inventory {
     public Weapon moveToNextWeapon() {
         if (inventory.isEmpty()) return null;
 
-        if (inventory.size >= currentWeapon) {
+        if (currentWeapon != inventory.size - 1) {
             currentWeapon++;
             return inventory.get(currentWeapon);
         }
+        currentWeapon = 0;
         return inventory.first();
     }
 }
