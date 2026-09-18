@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Timer;
 import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
-import com.gdxjam38.opshooter.stuff.player.components.Health;import com.gdxjam38.opshooter.stuff.player.components.Inventory;import com.gdxjam38.opshooter.stuff.weapons.Gun;
+import com.gdxjam38.opshooter.stuff.player.components.Health;
+import com.gdxjam38.opshooter.stuff.player.components.Inventory;
+import com.gdxjam38.opshooter.stuff.weapons.Gun;
 
 public class Player {
 
@@ -35,7 +37,8 @@ public class Player {
     }
 
     private float greenness = 1, blueness = 1;
-    public void update(float delta){
+
+    public void update(float delta) {
         if (greenness <= 1)
             Timer.schedule(new Timer.Task() {
                 @Override
@@ -47,6 +50,7 @@ public class Player {
                 }
             }, delta * 10);
     }
+
     public void draw(SpriteBatch spriteBatch) {
         sprite.draw(spriteBatch);
     }
@@ -85,10 +89,11 @@ public class Player {
                 sprite.set(rightSprite);
                 break;
         }
+        sprite.setColor(1, greenness, blueness, 1);
         sprite.setPosition(hitBox.x, hitBox.y);
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(int damage) {
         health.modifyHp(-damage);
         greenness = 0f;
         blueness = 0f;
