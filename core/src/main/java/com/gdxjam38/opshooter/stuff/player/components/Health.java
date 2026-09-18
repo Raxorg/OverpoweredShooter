@@ -67,4 +67,8 @@ public class Health {
     public float getHpRatio() {
         return maxHp != 0 ? (float) hp / maxHp : 0;
     }
+
+    public boolean isDead(){
+        return hp <= 0;
+    }
 }

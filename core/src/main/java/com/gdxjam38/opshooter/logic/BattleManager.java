@@ -3,7 +3,6 @@ package com.gdxjam38.opshooter.logic;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
@@ -13,16 +12,19 @@ import java.util.Objects;
 public class BattleManager {
 
     private final Label[] playerHp = new Label[2];
-    private final Array<Player> players;
+    private final Player[] players = new Player[2];
     private final Stage stage;
     /**
      * this is to avoid creating a string every frame for no reason
      */
     private final int[] changedHp = new int[2];
-
     public BattleManager(Stuff stuff, Stage stage) {
-        players = stuff.getPlayers();
         this.stage = Objects.requireNonNull(stage, "Stage cannot be null");
+
+        for (int i = 0; i < stuff.getPlayers().size; i++) {
+            players[i] = stuff.getPlayers().get(i);
+        }
+
         generateLabels();
     }
 
@@ -46,9 +48,22 @@ public class BattleManager {
 
     private void updateLabels() {
         for (int i = 0; i < playerHp.length; i++) {
-            if (changedHp[i] == players.get(i).health.getHp()) continue;
-            playerHp[i].setText("player" + (i + 1) + " health: " + players.get(i).health.getHp());
-            changedHp[i] = players.get(i).health.getHp();
+            if (changedHp[i] == players[i].health.getHp()) continue;
+            playerHp[i].setText("player" + (i + 1) + " health: " + players[i].health.getHp());
+            changedHp[i] = players[i].health.getHp();
         }
+    }
+
+    private enum BattleState {
+        WON, LOST, WON_BY_TIMEOUT, LOST_BY_TIMEOUT, TIE, GOING
+    }
+
+    private BattleState getBattleState() {
+        if (MatchTimer.instance.isTimeOver()) {
+            if (players[0].health.isDead()) return BattleState.LOST_BY_TIMEOUT;
+            if (players[1].health.isDead()) return BattleState.WON_BY_TIMEOUT;
+            return BattleState.TIE;
+        }
+        return BattleState.GOING;
     }
 }

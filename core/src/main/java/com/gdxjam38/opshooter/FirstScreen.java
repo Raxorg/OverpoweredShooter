@@ -1,7 +1,5 @@
 package com.gdxjam38.opshooter;
 
-import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
-
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -10,9 +8,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.BattleManager;
+import com.gdxjam38.opshooter.logic.MatchTimer;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
-import com.gdxjam38.opshooter.stuff.player.Player;import com.gdxjam38.opshooter.stuff.weapons.Weapon;
+import com.gdxjam38.opshooter.stuff.player.Player;
+import com.gdxjam38.opshooter.stuff.weapons.Weapon;
+
+import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -26,6 +28,7 @@ public class FirstScreen extends ScreenAdapter {
     private final AttackHandler attackHandler;
     private final Stage stage;
     private final BattleManager battleManager;
+    private final MatchTimer timer;
 
     public FirstScreen() {
         spriteBatch = new SpriteBatch();
@@ -35,11 +38,13 @@ public class FirstScreen extends ScreenAdapter {
         attackHandler = new AttackHandler(stuff);
         stage = new Stage(new FitViewport(1200, 700));
         battleManager = new BattleManager(stuff, stage);
+        timer = new MatchTimer(stage);
     }
 
     @Override
     public void show() {
         System.out.println("FirstScreen show() called");
+        timer.setCounting(true);
     }
 
     @Override
@@ -52,11 +57,12 @@ public class FirstScreen extends ScreenAdapter {
         for (int i = 0; i < Weapon.projectiles.size; i++) {
             Weapon.projectiles.get(i).update(stuff.getPlayers(), delta);
         }
+        timer.update(delta);
         battleManager.update();
         movementHandler.update(delta);
         attackHandler.update(delta);
         stage.act(delta);
-        for (Player player : stuff.getPlayers()){
+        for (Player player : stuff.getPlayers()) {
             player.update(delta);
         }
     }
@@ -80,7 +86,7 @@ public class FirstScreen extends ScreenAdapter {
             stuff.getPlayers().get(i).drawDebug(renderer);
         }
         stuff.getBush().drawDebug(renderer);
-        for (int i = 0; i <  Weapon.projectiles.size; i++) {
+        for (int i = 0; i < Weapon.projectiles.size; i++) {
             Weapon.projectiles.get(i).draw(renderer);
         }
 
