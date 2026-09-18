@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Timer;
 import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.player.components.Health;
@@ -39,16 +38,10 @@ public class Player {
     private float greenness = 1, blueness = 1;
 
     public void update(float delta) {
-        if (greenness <= 1)
-            Timer.schedule(new Timer.Task() {
-                @Override
-                public void run() {
-                    greenness = Math.min(greenness + 0.1f, 1);
-                    blueness = Math.min(blueness + 0.1f, 1);
+        greenness = Math.min(greenness + delta * 4, 1);
+        blueness = Math.min(blueness + delta * 4, 1);
 
-                    sprite.setColor(1, greenness, blueness, 1);
-                }
-            }, delta * 10);
+        sprite.setColor(1, greenness, blueness, 1);
     }
 
     public void draw(SpriteBatch spriteBatch) {

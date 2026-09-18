@@ -43,9 +43,7 @@ public class AttackHandler {
         if (Gdx.input.isKeyJustPressed(key)) {
             if (attackControl.isActive()) {
                 releaseAttack(attackControl);
-                Weapon weapon = player.inventory.getCurrentWeapon();
-                //if (weapon != null)
-                weapon.shot(player, attackControl.getRotation());
+              player.inventory.getCurrentWeapon().shot(player, attackControl.getRotation());
             } else showAim(attackControl, color);
         }
     }
