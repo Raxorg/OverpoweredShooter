@@ -9,4 +9,5 @@ public class Constants {
     public static final float ARROW_HEIGHT = ARROW_WIDTH / 3f;
     public static final float TILE_SIZE = 75f;
     public static final float PLAYER_SPEED = 128f;
+    public static final float BULLETS_LIFE_SPAN = 10;
 }

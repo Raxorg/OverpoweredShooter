@@ -1,4 +1,4 @@
-package com.gdxjam38.opshooter.stuff.projectiles;
+package com.gdxjam38.opshooter.stuff.weapons.projectiles;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,8 +12,8 @@ public abstract class Projectile {
 
     protected final Vector2 velocity = new Vector2();
     protected final Vector2 position = new Vector2();
-    public final Rectangle hitBox;
     protected final Player owner;
+    public final Rectangle hitBox;
     private boolean dead = false;
     protected float speed = 512;
 

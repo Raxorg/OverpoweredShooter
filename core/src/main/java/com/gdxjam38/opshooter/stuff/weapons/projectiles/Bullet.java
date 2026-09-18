@@ -1,4 +1,4 @@
-package com.gdxjam38.opshooter.stuff.projectiles;
+package com.gdxjam38.opshooter.stuff.weapons.projectiles;
 
 import com.gdxjam38.opshooter.stuff.player.Player;
 

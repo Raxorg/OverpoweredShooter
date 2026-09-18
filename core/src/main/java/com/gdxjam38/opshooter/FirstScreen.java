@@ -12,7 +12,7 @@ import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.BattleManager;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
-import com.gdxjam38.opshooter.stuff.player.Player;
+import com.gdxjam38.opshooter.stuff.player.Player;import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -49,8 +49,8 @@ public class FirstScreen extends ScreenAdapter {
     }
 
     private void update(float delta) {
-        for (int i = 0; i < stuff.getProjectiles().size; i++) {
-            stuff.getProjectiles().get(i).update(stuff.getPlayers(), delta);
+        for (int i = 0; i < Weapon.projectiles.size; i++) {
+            Weapon.projectiles.get(i).update(stuff.getPlayers(), delta);
         }
         battleManager.update();
         movementHandler.update(delta);
@@ -80,8 +80,8 @@ public class FirstScreen extends ScreenAdapter {
             stuff.getPlayers().get(i).drawDebug(renderer);
         }
         stuff.getBush().drawDebug(renderer);
-        for (int i = 0; i < stuff.getProjectiles().size; i++) {
-            stuff.getProjectiles().get(i).draw(renderer);
+        for (int i = 0; i <  Weapon.projectiles.size; i++) {
+            Weapon.projectiles.get(i).draw(renderer);
         }
 
         renderer.end();

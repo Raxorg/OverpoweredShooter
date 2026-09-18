@@ -19,6 +19,7 @@ public class AttackControl {
         arrow.setSize(ARROW_WIDTH, ARROW_HEIGHT);
         arrow.setColor(CLEAR);
         arrow.setOrigin(0f, arrow.getHeight() * 0.5f);
+        arrow.setScale(100, arrow.getScaleY());
     }
 
     public void draw(SpriteBatch spriteBatch) {
