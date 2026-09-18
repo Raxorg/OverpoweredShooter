@@ -1,9 +1,10 @@
 package com.gdxjam38.opshooter.stuff.player.components;
 
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Null;
 import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 public class Inventory {
 
@@ -11,12 +12,12 @@ public class Inventory {
     private int currentWeapon = 0;
 
     public void addWeapon(Weapon weapon) {
-        inventory.add(weapon);
+        inventory.add(Objects.requireNonNull(weapon, "weapon cannot be null"));
     }
 
     /**
      *
-     * @return the current equipped weapon, null if there's no weapons
+     * @return the current equipped weapon.
      */
     public Weapon getCurrentWeapon() {
         return inventory.get(currentWeapon);
@@ -24,7 +25,7 @@ public class Inventory {
 
     /**
      *
-     * @return the next weapon, null if there's no next weapon, or there's no weapons at all
+     * @return the next weapon, null if there's no weapons at all, returns the first weapon if there's no next one.
      */
     @Nullable
     public Weapon moveToNextWeapon() {
@@ -34,6 +35,6 @@ public class Inventory {
             currentWeapon++;
             return inventory.get(currentWeapon);
         }
-        return null;
+        return inventory.first();
     }
 }

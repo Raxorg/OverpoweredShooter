@@ -6,8 +6,6 @@ import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
-import com.gdxjam38.opshooter.stuff.weapons.Weapon;
-import com.gdxjam38.opshooter.stuff.weapons.projectiles.Projectile;
 
 import static com.badlogic.gdx.Input.Keys.F;
 import static com.badlogic.gdx.Input.Keys.P;
@@ -18,7 +16,6 @@ public class AttackHandler {
     private final Player player1, player2;
     private final AttackControl attackControl1, attackControl2;
     private final Array<Player> players;
-    private final Array<Projectile> projectiles;
 
     public AttackHandler(Stuff stuff) {
         players = stuff.getPlayers();
@@ -26,7 +23,6 @@ public class AttackHandler {
         player2 = stuff.getPlayer2();
         attackControl1 = player1.attackControl;
         attackControl2 = player2.attackControl;
-        projectiles = Weapon.projectiles;
     }
 
     public void update(float delta) {
@@ -43,7 +39,7 @@ public class AttackHandler {
         if (Gdx.input.isKeyJustPressed(key)) {
             if (attackControl.isActive()) {
                 releaseAttack(attackControl);
-              player.inventory.getCurrentWeapon().shot(player, attackControl.getRotation());
+                player.inventory.getCurrentWeapon().shot(player, attackControl.getRotation());
             } else showAim(attackControl, color);
         }
     }

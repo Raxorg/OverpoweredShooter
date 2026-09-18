@@ -15,7 +15,7 @@ public abstract class Projectile {
     protected final Player owner;
     public final Rectangle hitBox;
     private boolean dead = false;
-    protected float speed = 512;
+    protected float speed = 1024;
 
     public Projectile(Player owner, float rotation) {
         this.owner = Objects.requireNonNull(owner, "owner cannot be null");
