@@ -14,10 +14,12 @@ public class BattleManager {
     private final Label[] playerHp = new Label[2];
     private final Player[] players = new Player[2];
     private final Stage stage;
+    public final DeathHandler deathHandler = new DeathHandler(players);
     /**
      * this is to avoid creating a string every frame for no reason
      */
     private final int[] changedHp = new int[2];
+
     public BattleManager(Stuff stuff, Stage stage) {
         this.stage = Objects.requireNonNull(stage, "Stage cannot be null");
 
@@ -44,6 +46,7 @@ public class BattleManager {
 
     public void update() {
         updateLabels();
+        deathHandler.update();
     }
 
     private void updateLabels() {
@@ -60,9 +63,13 @@ public class BattleManager {
 
     private BattleState getBattleState() {
         if (MatchTimer.instance.isTimeOver()) {
-            if (players[0].health.isDead()) return BattleState.LOST_BY_TIMEOUT;
-            if (players[1].health.isDead()) return BattleState.WON_BY_TIMEOUT;
-            return BattleState.TIE;
+            if (deathHandler.deathCount[0] > deathHandler.deathCount[1]) {
+                return BattleState.LOST_BY_TIMEOUT;
+            } else if (deathHandler.deathCount[0] < deathHandler.deathCount[1]) {
+                return BattleState.WON_BY_TIMEOUT;
+            } else {
+                return BattleState.TIE;
+            }
         }
         return BattleState.GOING;
     }
