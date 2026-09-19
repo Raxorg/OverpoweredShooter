@@ -1,6 +1,7 @@
 package com.gdxjam38.opshooter.stuff.player.components;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gdxjam38.opshooter.Assets;
@@ -15,7 +16,7 @@ public class AttackControl {
     private boolean active;
 
     public AttackControl() {
-        arrow = new Sprite(Assets.arrow);
+        arrow = new Sprite(Assets.gun);
         arrow.setSize(ARROW_WIDTH, ARROW_HEIGHT);
         arrow.setColor(CLEAR);
         arrow.setOrigin(0f, arrow.getHeight() * 0.5f);
@@ -52,4 +53,9 @@ public class AttackControl {
     public float getRotation() {
         return arrow.getRotation() % 360;
     }
+
+    public void setArrow(Texture arrow) {
+        this.arrow.setTexture(arrow);
+    }
+
 }

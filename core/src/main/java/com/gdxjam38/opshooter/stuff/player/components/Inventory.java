@@ -2,7 +2,6 @@ package com.gdxjam38.opshooter.stuff.player.components;
 
 import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.weapons.Weapon;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -27,7 +26,6 @@ public class Inventory {
      *
      * @return the next weapon, null if there's no weapons at all, returns the first weapon if there's no next one.
      */
-    @Nullable
     public Weapon moveToNextWeapon() {
         if (inventory.isEmpty()) return null;
 

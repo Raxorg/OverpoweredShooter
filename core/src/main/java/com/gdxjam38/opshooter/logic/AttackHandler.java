@@ -6,10 +6,11 @@ import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
+import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 
-import static com.badlogic.gdx.Input.Keys.F;
-import static com.badlogic.gdx.Input.Keys.P;
+import static com.badlogic.gdx.Input.Keys.*;
 import static com.badlogic.gdx.graphics.Color.*;
+import static com.badlogic.gdx.graphics.Color.CLEAR;
 
 public class AttackHandler {
 
@@ -33,13 +34,24 @@ public class AttackHandler {
     private void updateInput() {
         handleControl(F, player1, BLUE, attackControl1);
         handleControl(P, player2, RED, attackControl2);
+        handleSwitching(TAB, player1, attackControl1);
+        handleSwitching(ENTER, player2, attackControl2);
+    }
+
+    private void handleSwitching(int key, Player player, AttackControl attackControl){
+        if (Gdx.input.isKeyJustPressed(key)){
+            Weapon weapon = player.inventory.moveToNextWeapon();
+            attackControl.setArrow(weapon.texture);
+        }
     }
 
     private void handleControl(int key, Player player, Color color, AttackControl attackControl) {
         if (Gdx.input.isKeyJustPressed(key)) {
             if (attackControl.isActive()) {
                 releaseAttack(attackControl);
-                player.inventory.getCurrentWeapon().shot(player, attackControl.getRotation());
+                Weapon weapon = player.inventory.getCurrentWeapon();
+                weapon.shot(player, attackControl.getRotation());
+                attackControl.setArrow(weapon.texture);
             } else showAim(attackControl, color);
         }
     }
