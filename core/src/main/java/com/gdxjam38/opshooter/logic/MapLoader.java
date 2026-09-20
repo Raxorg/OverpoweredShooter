@@ -2,7 +2,7 @@ package com.gdxjam38.opshooter.logic;
 
 import static com.badlogic.gdx.graphics.Color.BLUE;
 import static com.badlogic.gdx.graphics.Color.RED;
-import static com.gdxjam38.opshooter.Constants.BUSH_SIZE;
+import static com.gdxjam38.opshooter.Constants.OBSTACLE_SIZE;
 import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
 
 import com.badlogic.gdx.math.GridPoint2;
@@ -55,11 +55,14 @@ public class MapLoader {
                 redFlag.setPosition(x, y);
                 break;
             case BUSH:
-                Obstacle bush = new Obstacle(Assets.bush1, BUSH_SIZE, BUSH_SIZE);
+                Obstacle bush = new Obstacle(Assets.bush1, OBSTACLE_SIZE, OBSTACLE_SIZE);
                 bush.setPosition(x, y);
                 obstacles.add(bush);
                 break;
             case CRATE:
+                Obstacle crate = new Obstacle(Assets.crate, OBSTACLE_SIZE, OBSTACLE_SIZE);
+                crate.setPosition(x, y);
+                obstacles.add(crate);
                 break;
         }
     }

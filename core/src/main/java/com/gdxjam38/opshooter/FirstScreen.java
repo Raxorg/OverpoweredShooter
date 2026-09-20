@@ -38,6 +38,8 @@ public class FirstScreen extends ScreenAdapter {
     private final MatchTimer timer;
     private final MapLoader mapLoader;
 
+    private static final boolean DEBUG = false;
+
     public FirstScreen() {
         spriteBatch = new SpriteBatch();
         renderer = new ShapeRenderer();
@@ -107,11 +109,13 @@ public class FirstScreen extends ScreenAdapter {
         spriteBatch.end();
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        for (int i = 0; i < stuff.getPlayers().size; i++) {
-            stuff.getPlayers().get(i).drawDebug(renderer);
-        }
-        for (int i = 0; i < stuff.getObstacles().size; i++) {
-            stuff.getObstacles().get(i).drawDebug(renderer);
+        if (DEBUG) {
+            for (int i = 0; i < stuff.getPlayers().size; i++) {
+                stuff.getPlayers().get(i).drawDebug(renderer);
+            }
+            for (int i = 0; i < stuff.getObstacles().size; i++) {
+                stuff.getObstacles().get(i).drawDebug(renderer);
+            }
         }
         for (int i = 0; i < Weapon.projectiles.size; i++) {
             Weapon.projectiles.get(i).draw(renderer);
