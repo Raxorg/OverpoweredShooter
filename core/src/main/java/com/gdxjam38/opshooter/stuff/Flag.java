@@ -1,5 +1,7 @@
 package com.gdxjam38.opshooter.stuff;
 
+import static com.gdxjam38.opshooter.Constants.FLAG_SIZE;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,7 +14,7 @@ public class Flag {
 
     public Flag(Texture flagTex) {
         sprite = new Sprite(flagTex);
-        sprite.setSize(75f, 75f);
+        sprite.setSize(FLAG_SIZE, FLAG_SIZE);
         sprite.setOriginCenter();
     }
 

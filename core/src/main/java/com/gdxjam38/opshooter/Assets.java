@@ -14,6 +14,7 @@ public class Assets {
     public static final Texture gun = new Texture(Gdx.files.internal("gun1.png"));
     public static final Texture redFlag = new Texture(Gdx.files.internal("redFlag.png"));
     public static final Texture blueFlag = new Texture(Gdx.files.internal("blueFlag.png"));
+    public static final Texture pixel = new Texture(Gdx.files.internal("pixel.png"));
 
     /**
      * Disposes {@link FirstScreen} related assets
@@ -25,6 +26,9 @@ public class Assets {
         arrow.dispose();
         playerSheet.dispose();
         gun.dispose();
+        redFlag.dispose();
+        blueFlag.dispose();
+        pixel.dispose();
     }
 
     /**

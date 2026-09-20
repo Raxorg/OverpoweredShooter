@@ -15,7 +15,7 @@ public class Floor {
     private final Sprite[][] tiles;
 
     public Floor() {
-        tiles = new Sprite[17][10];
+        tiles = new Sprite[24][14];
         Sprite tile;
         for (int c = 0; c < tiles.length; c++) {
             for (int r = 0; r < tiles[c].length; r++) {

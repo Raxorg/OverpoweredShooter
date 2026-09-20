@@ -4,6 +4,7 @@ import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -16,6 +17,8 @@ import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 
+import space.earlygrey.shapedrawer.ShapeDrawer;
+
 /**
  * First screen of the application. Displayed after the application is created.
  */
@@ -23,6 +26,7 @@ public class FirstScreen extends ScreenAdapter {
 
     private final SpriteBatch spriteBatch;
     private final ShapeRenderer renderer;
+    private final ShapeDrawer shapeDrawer;
 
     private final Stuff stuff;
     private final MovementHandler movementHandler;
@@ -35,6 +39,8 @@ public class FirstScreen extends ScreenAdapter {
     public FirstScreen() {
         spriteBatch = new SpriteBatch();
         renderer = new ShapeRenderer();
+        shapeDrawer = new ShapeDrawer(spriteBatch, new TextureRegion(Assets.pixel));
+
         stuff = new Stuff();
         movementHandler = new MovementHandler(stuff);
         attackHandler = new AttackHandler(stuff);
@@ -76,6 +82,12 @@ public class FirstScreen extends ScreenAdapter {
 
         spriteBatch.begin();
         stuff.getFloor().draw(spriteBatch);
+        for (int i = 0; i < stuff.getBlueRespawnPoints().size; i++) {
+            stuff.getBlueRespawnPoints().get(i).draw(shapeDrawer);
+        }
+        for (int i = 0; i < stuff.getRedRespawnPoints().size; i++) {
+            stuff.getRedRespawnPoints().get(i).draw(shapeDrawer);
+        }
         stuff.getRedFlag().draw(spriteBatch);
         stuff.getBlueFlag().draw(spriteBatch);
         for (int i = 0; i < stuff.getPlayers().size; i++) {

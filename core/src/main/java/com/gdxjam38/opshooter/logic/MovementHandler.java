@@ -1,6 +1,8 @@
 package com.gdxjam38.opshooter.logic;
 
+import static com.gdxjam38.opshooter.Constants.PLAYER_HEIGHT;
 import static com.gdxjam38.opshooter.Constants.PLAYER_SPEED;
+import static com.gdxjam38.opshooter.Constants.PLAYER_WIDTH;
 import static com.gdxjam38.opshooter.Direction.DOWN;
 import static com.gdxjam38.opshooter.Direction.LEFT;
 import static com.gdxjam38.opshooter.Direction.RIGHT;
@@ -64,8 +66,8 @@ public class MovementHandler {
     }
 
     private void clampPosition(Player player) {
-        float x = MathUtils.clamp(player.hitBox.x, 0f, 1200f - 64f);
-        float y = MathUtils.clamp(player.hitBox.y, 0f, 700f - 64f);
+        float x = MathUtils.clamp(player.hitBox.x, 0f, 1200f - PLAYER_WIDTH);
+        float y = MathUtils.clamp(player.hitBox.y, 0f, 700f - PLAYER_HEIGHT);
         player.setPosition(x, y);
     }
 }

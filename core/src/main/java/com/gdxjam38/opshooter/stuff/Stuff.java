@@ -8,6 +8,9 @@ import static com.badlogic.gdx.Input.Keys.RIGHT;
 import static com.badlogic.gdx.Input.Keys.S;
 import static com.badlogic.gdx.Input.Keys.UP;
 import static com.badlogic.gdx.Input.Keys.W;
+import static com.gdxjam38.opshooter.Constants.PLAYER_HEIGHT;
+import static com.gdxjam38.opshooter.Constants.PLAYER_WIDTH;
+import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
@@ -22,6 +25,7 @@ public class Stuff {
     private final Obstacle bush;
     private final Flag redFlag, blueFlag;
     private final Array<Player> players;
+    private final Array<RespawnPoint> blueRespawnPoints, redRespawnPoints;
 
     public Stuff() {
         floor = new Floor();
@@ -38,19 +42,33 @@ public class Stuff {
         Sprite leftSprite2 = new Sprite(Assets.playerSheet, 140, 77, 62, 77);
         Sprite rightSprite2 = new Sprite(Assets.playerSheet, 70, 77, 61, 77);
         player2 = new Player(upSprite2, downSprite2, leftSprite2, rightSprite2, UP, DOWN, LEFT, RIGHT);
-        player2.setPosition(1200f - 64f, 700f - 64f);
+        player2.setPosition(1200f - PLAYER_WIDTH, 700f - PLAYER_HEIGHT);
 
         bush = new Obstacle(Assets.bush1, 75f, 75f);
         bush.setPosition(200f, 100f);
 
         redFlag = new Flag(Assets.redFlag);
-        redFlag.setPosition(1200f - 150f, 700f - 150f);
+        redFlag.setPosition(1200f - 2 * TILE_SIZE, 700f - 2 * TILE_SIZE);
         blueFlag = new Flag(Assets.blueFlag);
-        blueFlag.setPosition(75f, 75f);
+        blueFlag.setPosition(TILE_SIZE, TILE_SIZE);
 
         players = new Array<>();
         players.add(player1);
         players.add(player2);
+
+        blueRespawnPoints = new Array<>();
+        blueRespawnPoints.add(new RespawnPoint(300, 350));
+        blueRespawnPoints.add(new RespawnPoint(50, 50));
+        blueRespawnPoints.add(new RespawnPoint(50, 650));
+        blueRespawnPoints.add(new RespawnPoint(550, 50));
+        blueRespawnPoints.add(new RespawnPoint(550, 650));
+
+        redRespawnPoints = new Array<>();
+        redRespawnPoints.add(new RespawnPoint(900, 350));
+        redRespawnPoints.add(new RespawnPoint(650, 50));
+        redRespawnPoints.add(new RespawnPoint(650, 650));
+        redRespawnPoints.add(new RespawnPoint(1150, 50));
+        redRespawnPoints.add(new RespawnPoint(1150, 650));
     }
 
     public Floor getFloor() {
@@ -79,5 +97,13 @@ public class Stuff {
 
     public Array<Player> getPlayers() {
         return players;
+    }
+
+    public Array<RespawnPoint> getBlueRespawnPoints() {
+        return blueRespawnPoints;
+    }
+
+    public Array<RespawnPoint> getRedRespawnPoints() {
+        return redRespawnPoints;
     }
 }

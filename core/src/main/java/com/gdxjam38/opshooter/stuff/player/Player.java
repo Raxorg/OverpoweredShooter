@@ -1,5 +1,10 @@
 package com.gdxjam38.opshooter.stuff.player;
 
+import static com.gdxjam38.opshooter.Constants.PLAYER_HEIGHT;
+import static com.gdxjam38.opshooter.Constants.PLAYER_WIDTH;
+import static com.gdxjam38.opshooter.Constants.PLAYER_STARTING_HEALTH;
+import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -15,7 +20,7 @@ public class Player {
 
     private final Sprite sprite, upSprite, downSprite, leftSprite, rightSprite;
     public final int upKey, downKey, leftKey, rightKey;
-    public final Rectangle hitBox = new Rectangle(0, 0, 64, 64);
+    public final Rectangle hitBox = new Rectangle(0, 0, TILE_SIZE, TILE_SIZE);
     public final Health health;
     public final AttackControl attackControl;
     public final Inventory inventory = new Inventory();
@@ -27,8 +32,9 @@ public class Player {
         this.leftSprite = leftSprite;
         this.rightSprite = rightSprite;
         sprite = new Sprite(downSprite);
+        sprite.setSize(PLAYER_WIDTH, PLAYER_HEIGHT);
         sprite.setOriginCenter();
-        health = new Health(250);
+        health = new Health(PLAYER_STARTING_HEALTH);
         attackControl = new AttackControl();
         this.upKey = upKey;
         this.downKey = downKey;
@@ -86,6 +92,7 @@ public class Player {
         }
         sprite.setColor(1, greenness, blueness, 1);
         sprite.setPosition(hitBox.x, hitBox.y);
+        sprite.setSize(PLAYER_WIDTH, PLAYER_HEIGHT);
         sprite.setOriginCenter();
     }
 

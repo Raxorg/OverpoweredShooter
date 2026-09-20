@@ -1,5 +1,7 @@
 package com.gdxjam38.opshooter.logic;
 
+import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
+
 import com.badlogic.gdx.math.Vector2;
 import com.gdxjam38.opshooter.stuff.Flag;
 import com.gdxjam38.opshooter.stuff.Stuff;
@@ -21,18 +23,18 @@ public class FlagHandler {
     }
 
     public void update() {
-        checkPlayerProximity();
+        updateCarryStatus();
         updateFlagPosition(redFlag, bluePlayer);
         updateFlagPosition(blueFlag, redPlayer);
     }
 
-    private void checkPlayerProximity() {
+    private void updateCarryStatus() {
         float distance = bluePlayer.getCenter(playerAux).dst(redFlag.getCenter(flagAux));
-        if (distance <= 75f) {
+        if (distance <= TILE_SIZE) {
             carry(redFlag);
         }
         distance = redPlayer.getCenter(playerAux).dst(blueFlag.getCenter(flagAux));
-        if (distance <= 75f) {
+        if (distance <= TILE_SIZE) {
             carry(blueFlag);
         }
     }
