@@ -1,5 +1,9 @@
 package com.gdxjam38.opshooter.logic;
 
+import static com.badlogic.gdx.graphics.Color.BLUE;
+import static com.badlogic.gdx.graphics.Color.RED;
+import static com.badlogic.gdx.graphics.Color.WHITE;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -38,7 +42,9 @@ public class BattleManager {
         table.setFillParent(true);
 
         playerHp[0] = new Label("", Assets.skin);
+        playerHp[0].setColor(BLUE.cpy().lerp(WHITE, 0.75f));
         playerHp[1] = new Label("", Assets.skin);
+        playerHp[1].setColor(RED.cpy().lerp(WHITE, 0.75f));
 
         for (Label playerHp : playerHp) {
             table.add(playerHp).row();
@@ -54,7 +60,7 @@ public class BattleManager {
     private void updateLabels() {
         for (int i = 0; i < playerHp.length; i++) {
             if (changedHp[i] == players[i].health.getHp()) continue;
-            playerHp[i].setText("player" + (i + 1) + " health: " + players[i].health.getHp());
+            playerHp[i].setText("Player " + (i + 1) + " health: " + players[i].health.getHp());
             changedHp[i] = players[i].health.getHp();
         }
     }
