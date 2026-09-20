@@ -10,11 +10,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.player.components.Health;
 import com.gdxjam38.opshooter.stuff.player.components.Inventory;
 import com.gdxjam38.opshooter.stuff.weapons.Gun;
+import com.gdxjam38.opshooter.stuff.weapons.TeleporterGun;
 
 public class Player {
 
@@ -41,6 +43,7 @@ public class Player {
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         inventory.addWeapon(new Gun());
+        inventory.addWeapon(new TeleporterGun(Assets.arrow));
     }
 
     private float greenness = 1, blueness = 1;

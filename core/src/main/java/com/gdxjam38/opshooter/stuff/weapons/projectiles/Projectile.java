@@ -8,6 +8,7 @@ import com.gdxjam38.opshooter.stuff.player.Player;
 
 import java.util.Objects;
 
+
 public abstract class Projectile {
 
     protected final Vector2 velocity = new Vector2();

@@ -11,6 +11,6 @@ public class Bullet extends Projectile {
 
     @Override
     public void onTouch(Player player) {
-        player.takeDamage(20);
+        player.takeDamage(1);
     }
 }

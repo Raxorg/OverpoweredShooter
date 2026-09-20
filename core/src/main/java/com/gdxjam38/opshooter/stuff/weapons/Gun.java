@@ -1,6 +1,5 @@
 package com.gdxjam38.opshooter.stuff.weapons;
 
-import com.badlogic.gdx.utils.Timer;
 import static com.gdxjam38.opshooter.Constants.*;
 
 import com.gdxjam38.opshooter.Assets;
@@ -18,12 +17,6 @@ public class Gun extends Weapon {
     public void shot(Player owner, float rotation) {
         Projectile bullet = new Bullet(owner, rotation);
         projectiles.add(bullet);
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-                projectiles.removeValue(bullet, false);
-            }
-        }, BULLETS_LIFE_SPAN);
-
+        limitLifeTime(bullet, BULLETS_LIFE_SPAN);
     }
 }
