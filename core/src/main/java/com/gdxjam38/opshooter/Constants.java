@@ -11,6 +11,7 @@ public class Constants {
     public static final float FLAG_SIZE = TILE_SIZE;
     public static final float PLAYER_WIDTH = TILE_SIZE;
     public static final float PLAYER_HEIGHT = TILE_SIZE;
+    public static final float BUSH_SIZE = TILE_SIZE;
     public static final float PLAYER_SPEED = 128f;
     public static final int PLAYER_STARTING_HEALTH = 3;
     public static final float BULLETS_LIFE_SPAN = 10;

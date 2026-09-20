@@ -17,11 +17,11 @@ import com.gdxjam38.opshooter.stuff.touchables.Obstacle;
 
 public class MovementHandler {
 
-    private final Obstacle bush;
+    private final Array<Obstacle> obstacles;
     private final Array<Player> players;
 
     public MovementHandler(Stuff stuff) {
-        bush = stuff.getBush();
+        obstacles = stuff.getObstacles();
         players = stuff.getPlayers();
     }
 
@@ -29,7 +29,9 @@ public class MovementHandler {
         for (int i = 0; i < players.size; i++) {
             Player player = players.get(i);
             handleInput(player, delta);
-            bush.handleCollision(player);
+            for (int j = 0; j < obstacles.size; j++) {
+                obstacles.get(j).handleCollision(player);
+            }
         }
     }
 

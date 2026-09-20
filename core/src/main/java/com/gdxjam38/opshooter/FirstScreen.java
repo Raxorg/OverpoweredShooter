@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.BattleManager;
 import com.gdxjam38.opshooter.logic.FlagHandler;
+import com.gdxjam38.opshooter.logic.MapLoader;
 import com.gdxjam38.opshooter.logic.MatchTimer;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
@@ -35,6 +36,7 @@ public class FirstScreen extends ScreenAdapter {
     private final Stage stage;
     private final BattleManager battleManager;
     private final MatchTimer timer;
+    private final MapLoader mapLoader;
 
     public FirstScreen() {
         spriteBatch = new SpriteBatch();
@@ -48,6 +50,9 @@ public class FirstScreen extends ScreenAdapter {
         stage = new Stage(new FitViewport(1200, 700));
         battleManager = new BattleManager(stuff, stage);
         timer = new MatchTimer(stage);
+        mapLoader = new MapLoader(stuff);
+
+        mapLoader.loadMap(Maps.firstMap);
     }
 
     @Override
@@ -96,14 +101,18 @@ public class FirstScreen extends ScreenAdapter {
         for (int i = 0; i < stuff.getPlayers().size; i++) {
             stuff.getPlayers().get(i).draw(spriteBatch);
         }
-        stuff.getBush().draw(spriteBatch);
+        for (int i = 0; i < stuff.getObstacles().size; i++) {
+            stuff.getObstacles().get(i).draw(spriteBatch);
+        }
         spriteBatch.end();
 
         renderer.begin(ShapeRenderer.ShapeType.Line);
         for (int i = 0; i < stuff.getPlayers().size; i++) {
             stuff.getPlayers().get(i).drawDebug(renderer);
         }
-        stuff.getBush().drawDebug(renderer);
+        for (int i = 0; i < stuff.getObstacles().size; i++) {
+            stuff.getObstacles().get(i).drawDebug(renderer);
+        }
         for (int i = 0; i < Weapon.projectiles.size; i++) {
             Weapon.projectiles.get(i).draw(renderer);
         }

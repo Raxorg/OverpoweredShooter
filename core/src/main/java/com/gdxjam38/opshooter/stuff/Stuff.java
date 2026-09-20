@@ -10,7 +10,6 @@ import static com.badlogic.gdx.Input.Keys.UP;
 import static com.badlogic.gdx.Input.Keys.W;
 import static com.gdxjam38.opshooter.Constants.PLAYER_HEIGHT;
 import static com.gdxjam38.opshooter.Constants.PLAYER_WIDTH;
-import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
@@ -22,7 +21,7 @@ public class Stuff {
 
     private final Floor floor;
     private final Player player1, player2;
-    private final Obstacle bush;
+    private final Array<Obstacle> obstacles;
     private final Flag redFlag, blueFlag;
     private final Array<Player> players;
     private final Array<RespawnPoint> blueRespawnPoints, redRespawnPoints;
@@ -44,31 +43,17 @@ public class Stuff {
         player2 = new Player(upSprite2, downSprite2, leftSprite2, rightSprite2, UP, DOWN, LEFT, RIGHT);
         player2.setPosition(1200f - PLAYER_WIDTH, 700f - PLAYER_HEIGHT);
 
-        bush = new Obstacle(Assets.bush1, 75f, 75f);
-        bush.setPosition(200f, 100f);
+        obstacles = new Array<>();
 
         redFlag = new Flag(Assets.redFlag);
-        redFlag.setPosition(1200f - 2 * TILE_SIZE, 700f - 2 * TILE_SIZE);
         blueFlag = new Flag(Assets.blueFlag);
-        blueFlag.setPosition(TILE_SIZE, TILE_SIZE);
 
         players = new Array<>();
         players.add(player1);
         players.add(player2);
 
         blueRespawnPoints = new Array<>();
-        blueRespawnPoints.add(new RespawnPoint(300, 350));
-        blueRespawnPoints.add(new RespawnPoint(50, 50));
-        blueRespawnPoints.add(new RespawnPoint(50, 650));
-        blueRespawnPoints.add(new RespawnPoint(550, 50));
-        blueRespawnPoints.add(new RespawnPoint(550, 650));
-
         redRespawnPoints = new Array<>();
-        redRespawnPoints.add(new RespawnPoint(900, 350));
-        redRespawnPoints.add(new RespawnPoint(650, 50));
-        redRespawnPoints.add(new RespawnPoint(650, 650));
-        redRespawnPoints.add(new RespawnPoint(1150, 50));
-        redRespawnPoints.add(new RespawnPoint(1150, 650));
     }
 
     public Floor getFloor() {
@@ -83,8 +68,8 @@ public class Stuff {
         return player2;
     }
 
-    public Obstacle getBush() {
-        return bush;
+    public Array<Obstacle> getObstacles() {
+        return obstacles;
     }
 
     public Flag getRedFlag() {
