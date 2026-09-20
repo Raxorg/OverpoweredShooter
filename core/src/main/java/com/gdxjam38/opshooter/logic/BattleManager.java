@@ -81,4 +81,8 @@ public class BattleManager {
         }
         return BattleState.GOING;
     }
+
+    public void setFlagHandler(FlagHandler flagHandler) {
+        deathHandler.setFlagHandler(flagHandler);
+    }
 }

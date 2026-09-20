@@ -54,6 +54,8 @@ public class FirstScreen extends ScreenAdapter {
         timer = new MatchTimer(stage);
         mapLoader = new MapLoader(stuff);
 
+        battleManager.setFlagHandler(flagHandler);
+
         mapLoader.loadMap(Maps.firstMap);
     }
 
@@ -89,6 +91,8 @@ public class FirstScreen extends ScreenAdapter {
 
         spriteBatch.begin();
         stuff.getFloor().draw(spriteBatch);
+        stuff.getBlueFlagPlatform().draw(spriteBatch);
+        stuff.getRedFlagPlatform().draw(spriteBatch);
         for (int i = 0; i < stuff.getBlueRespawnPoints().size; i++) {
             stuff.getBlueRespawnPoints().get(i).draw(shapeDrawer);
         }

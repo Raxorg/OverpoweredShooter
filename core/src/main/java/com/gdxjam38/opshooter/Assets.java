@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class Assets {
 
     public static final Skin skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
+
     public static final Texture tile1 = new Texture(Gdx.files.internal("tile1.png"));
     public static final Texture bush1 = new Texture(Gdx.files.internal("bush1.png"));
     public static final Texture crate = new Texture(Gdx.files.internal("crate.png"));
@@ -18,6 +19,10 @@ public class Assets {
     public static final Texture redFlag = new Texture(Gdx.files.internal("redFlag.png"));
     public static final Texture blueFlag = new Texture(Gdx.files.internal("blueFlag.png"));
     public static final Texture pixel = new Texture(Gdx.files.internal("pixel.png"));
+    public static final Texture bullet = new Texture(Gdx.files.internal("bullet.png"));
+    public static final Texture bluePlatform = new Texture(Gdx.files.internal("bluePlatform.png"));
+    public static final Texture redPlatform = new Texture(Gdx.files.internal("redPlatform.png"));
+
     public static final Sound gunShot = Gdx.audio.newSound(Gdx.files.internal("audio/gun_shoot_1.wav"));
 
     /**
@@ -34,6 +39,9 @@ public class Assets {
         redFlag.dispose();
         blueFlag.dispose();
         pixel.dispose();
+        bullet.dispose();
+        bluePlatform.dispose();
+        redPlatform.dispose();
         gunShot.dispose();
     }
 

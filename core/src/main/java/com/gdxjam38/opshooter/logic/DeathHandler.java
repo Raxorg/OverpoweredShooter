@@ -13,6 +13,8 @@ public class DeathHandler {
     public final int[] deathCount = new int[2];
     private final Vector2 aux;
 
+    private FlagHandler flagHandler;
+
     public DeathHandler(Stuff stuff) {
         players = stuff.getPlayers();
         blueRespawnPoints = stuff.getBlueRespawnPoints();
@@ -39,5 +41,10 @@ public class DeathHandler {
         player.health.resetHp();
         respawnPoint.getPosition(aux);
         player.setPosition(aux.x, aux.y);
+        flagHandler.dropFlag(player);
+    }
+
+    public void setFlagHandler(FlagHandler flagHandler) {
+        this.flagHandler = flagHandler;
     }
 }

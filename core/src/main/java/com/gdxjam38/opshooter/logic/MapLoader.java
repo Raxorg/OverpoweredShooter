@@ -5,6 +5,7 @@ import static com.badlogic.gdx.graphics.Color.RED;
 import static com.gdxjam38.opshooter.Constants.OBSTACLE_SIZE;
 import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
@@ -20,6 +21,7 @@ public class MapLoader {
     private final Array<RespawnPoint> blueRespawnPoints, redRespawnPoints;
     private final Flag blueFlag, redFlag;
     private final Array<Obstacle> obstacles;
+    private final Sprite blueFlagPlatform, redFlagPlatform;
 
     public MapLoader(Stuff stuff) {
         blueRespawnPoints = stuff.getBlueRespawnPoints();
@@ -27,6 +29,8 @@ public class MapLoader {
         blueFlag = stuff.getBlueFlag();
         redFlag = stuff.getRedFlag();
         obstacles = stuff.getObstacles();
+        blueFlagPlatform = stuff.getBlueFlagPlatform();
+        redFlagPlatform = stuff.getRedFlagPlatform();
     }
 
     public void loadMap(OrderedMap<GridPoint2, Item> map) {
@@ -34,8 +38,6 @@ public class MapLoader {
             GridPoint2 gridPoint = map.orderedKeys().get(i);
             spawnItem(gridPoint.x, gridPoint.y, map.get(gridPoint));
         }
-        redFlag.setPosition(1200f - 2 * TILE_SIZE, 700f - 2 * TILE_SIZE);
-        blueFlag.setPosition(TILE_SIZE, TILE_SIZE);
     }
 
     private void spawnItem(int column, int row, Item item) {
@@ -50,9 +52,11 @@ public class MapLoader {
                 break;
             case BLUE_FLAG:
                 blueFlag.setPosition(x, y);
+                blueFlagPlatform.setPosition(x, y);
                 break;
             case RED_FLAG:
                 redFlag.setPosition(x, y);
+                redFlagPlatform.setPosition(x, y);
                 break;
             case BUSH:
                 Obstacle bush = new Obstacle(Assets.bush1, OBSTACLE_SIZE, OBSTACLE_SIZE);

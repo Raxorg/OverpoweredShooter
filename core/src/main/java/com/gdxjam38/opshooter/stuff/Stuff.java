@@ -10,6 +10,7 @@ import static com.badlogic.gdx.Input.Keys.UP;
 import static com.badlogic.gdx.Input.Keys.W;
 import static com.gdxjam38.opshooter.Constants.PLAYER_HEIGHT;
 import static com.gdxjam38.opshooter.Constants.PLAYER_WIDTH;
+import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
@@ -25,6 +26,7 @@ public class Stuff {
     private final Flag redFlag, blueFlag;
     private final Array<Player> players;
     private final Array<RespawnPoint> blueRespawnPoints, redRespawnPoints;
+    private final Sprite blueFlagPlatform, redFlagPlatform;
 
     public Stuff() {
         floor = new Floor();
@@ -54,6 +56,13 @@ public class Stuff {
 
         blueRespawnPoints = new Array<>();
         redRespawnPoints = new Array<>();
+
+        blueFlagPlatform = new Sprite(Assets.bluePlatform);
+        blueFlagPlatform.setSize(TILE_SIZE, TILE_SIZE);
+        blueFlagPlatform.setOriginCenter();
+        redFlagPlatform = new Sprite(Assets.redPlatform);
+        redFlagPlatform.setSize(TILE_SIZE, TILE_SIZE);
+        redFlagPlatform.setOriginCenter();
     }
 
     public Floor getFloor() {
@@ -90,5 +99,13 @@ public class Stuff {
 
     public Array<RespawnPoint> getRedRespawnPoints() {
         return redRespawnPoints;
+    }
+
+    public Sprite getBlueFlagPlatform() {
+        return blueFlagPlatform;
+    }
+
+    public Sprite getRedFlagPlatform() {
+        return redFlagPlatform;
     }
 }

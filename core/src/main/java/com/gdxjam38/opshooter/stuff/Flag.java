@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Flag {
 
     private final Sprite sprite;
-    private boolean captured;
+    private boolean carried;
 
     public Flag(Texture flagTex) {
         sprite = new Sprite(flagTex);
@@ -30,11 +30,11 @@ public class Flag {
         return result.set(sprite.getX() + sprite.getOriginX(), sprite.getY() + sprite.getOriginY());
     }
 
-    public boolean isCaptured() {
-        return captured;
+    public boolean isCarried() {
+        return carried;
     }
 
     public void setCarried(boolean captured) {
-        this.captured = captured;
+        this.carried = captured;
     }
 }

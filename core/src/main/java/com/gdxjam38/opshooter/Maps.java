@@ -32,7 +32,7 @@ public class Maps {
         put(19, 0, RED_SPAWN);
 
         put(1, 1, BLUE_FLAG);
-        put(22, 22, RED_FLAG);
+        put(22, 12, RED_FLAG);
 
         // Blue side bushes
         put(5, 0, BUSH);
