@@ -10,7 +10,7 @@ import com.gdxjam38.opshooter.stuff.player.Player;
 public class Obstacle {
 
     private final Sprite sprite;
-    private final Rectangle hitBox = new Rectangle();
+    public final Rectangle hitBox = new Rectangle();
 
     public Obstacle(Texture texture, float width, float height) {
         sprite = new Sprite(texture);

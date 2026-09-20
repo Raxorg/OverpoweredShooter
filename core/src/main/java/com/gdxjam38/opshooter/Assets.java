@@ -17,7 +17,7 @@ public class Assets {
     public static final Texture redFlag = new Texture(Gdx.files.internal("redFlag.png"));
     public static final Texture blueFlag = new Texture(Gdx.files.internal("blueFlag.png"));
     public static final Texture pixel = new Texture(Gdx.files.internal("pixel.png"));
-    public static final Sound gunshot = Gdx.audio.newSound(Gdx.files.internal("audio/gun_shoot_1.wav"));
+    public static final Sound gunShot = Gdx.audio.newSound(Gdx.files.internal("audio/gun_shoot_1.wav"));
 
     /**
      * Disposes {@link FirstScreen} related assets
@@ -32,6 +32,7 @@ public class Assets {
         redFlag.dispose();
         blueFlag.dispose();
         pixel.dispose();
+        gunShot.dispose();
     }
 
     /**

@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.gdxjam38.opshooter.stuff.player.Player;import com.gdxjam38.opshooter.stuff.weapons.Weapon;
+import com.gdxjam38.opshooter.stuff.player.Player;
+import com.gdxjam38.opshooter.stuff.touchables.Obstacle;
+import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 
 import java.util.Objects;
 
@@ -35,13 +37,18 @@ public abstract class Projectile {
     protected abstract void onTouch(Player target);
 
 
-    public void update(Array<Player> players, float delta) {
+    public void update(Array<Obstacle> obstacles, Array<Player> players, float delta) {
         for (Player player : players) {
             if (player == owner) continue;
             if (hitBox.overlaps(player.hitBox)) {
                 onTouch(player);
                 Weapon.destroy(this);
                 return;
+            }
+        }
+        for (int i = 0; i < obstacles.size; i++) {
+            if (hitBox.overlaps(obstacles.get(i).hitBox)){
+                Weapon.destroy(this);
             }
         }
         hitBox.x += velocity.x * speed * delta;

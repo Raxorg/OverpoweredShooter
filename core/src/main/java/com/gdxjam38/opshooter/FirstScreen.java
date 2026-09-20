@@ -69,7 +69,7 @@ public class FirstScreen extends ScreenAdapter {
 
     private void update(float delta) {
         for (int i = 0; i < Weapon.projectiles.size; i++) {
-            Weapon.projectiles.get(i).update(stuff.getPlayers(), delta);
+            Weapon.projectiles.get(i).update(stuff.getObstacles(), stuff.getPlayers(), delta);
         }
         timer.update(delta);
         battleManager.update();

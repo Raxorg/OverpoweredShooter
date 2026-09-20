@@ -16,7 +16,7 @@ public class Gun extends Weapon {
 
     @Override
     public void shot(Player owner, float rotation) {
-        Assets.gunshot.play();
+        Assets.gunShot.play();
         shootBullet(owner, rotation);
 
         Timer.schedule(new Timer.Task() {
