@@ -1,6 +1,7 @@
 package com.gdxjam38.opshooter;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -16,6 +17,7 @@ public class Assets {
     public static final Texture redFlag = new Texture(Gdx.files.internal("redFlag.png"));
     public static final Texture blueFlag = new Texture(Gdx.files.internal("blueFlag.png"));
     public static final Texture pixel = new Texture(Gdx.files.internal("pixel.png"));
+    public static final Sound gunshot = Gdx.audio.newSound(Gdx.files.internal("audio/gun_shoot_1.wav"));
 
     /**
      * Disposes {@link FirstScreen} related assets
