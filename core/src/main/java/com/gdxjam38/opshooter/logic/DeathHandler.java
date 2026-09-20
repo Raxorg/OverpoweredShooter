@@ -1,49 +1,43 @@
 package com.gdxjam38.opshooter.logic;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.gdxjam38.opshooter.stuff.RespawnPoint;
+import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
-
-import java.util.Objects;
-import java.util.Random;
 
 public class DeathHandler {
 
-    private final Vector2[][] respawnPoints = new Vector2[2][5];
-    private final Player[] players;
+    private final Array<Player> players;
+    private final Array<RespawnPoint> blueRespawnPoints, redRespawnPoints;
     public final int[] deathCount = new int[2];
-    private final Random random = new Random();
+    private final Vector2 aux;
 
-    public DeathHandler(Player[] players) {
-        this.players = Objects.requireNonNull(players, "players cannot be null");
-        respawnPoints[0][0] = new Vector2(300, 350);
-        respawnPoints[0][1] = new Vector2(50, 50);
-        respawnPoints[0][2] = new Vector2(50, 650);
-        respawnPoints[0][3] = new Vector2(550, 50);
-        respawnPoints[0][4] = new Vector2(550, 650);
-
-        respawnPoints[1][0] = new Vector2(900, 350);
-        respawnPoints[1][1] = new Vector2(650, 50);
-        respawnPoints[1][2] = new Vector2(650, 650);
-        respawnPoints[1][3] = new Vector2(1150, 50);
-        respawnPoints[1][4] = new Vector2(1150, 650);
+    public DeathHandler(Stuff stuff) {
+        players = stuff.getPlayers();
+        blueRespawnPoints = stuff.getBlueRespawnPoints();
+        redRespawnPoints = stuff.getRedRespawnPoints();
+        aux = new Vector2();
     }
 
-    public void update(){
-        int deadPlayer = checkForDeath();
-        if (deadPlayer < 0) return;
-        handleDeath(deadPlayer);
+    public void update() {
+        checkDeaths();
     }
-    private int checkForDeath(){
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].health.isDead()) return i;
+
+    private void checkDeaths() {
+        for (int i = 0; i < players.size; i++) {
+            if (players.get(i).health.isDead()) {
+                Array<RespawnPoint> respawnPoints = i == 0 ? blueRespawnPoints : redRespawnPoints;
+                handleDeath(players.get(i), respawnPoints);
+                deathCount[i]++;
+            }
         }
-        return -1;
     }
 
-    private void handleDeath(int i){
-        int position = random.nextInt(respawnPoints[i].length);
-        players[i].health.resetHp();
-        players[i].hitBox.setPosition(respawnPoints[i][position]);
-        deathCount[i]++;
+    private void handleDeath(Player player, Array<RespawnPoint> respawnPoints) {
+        RespawnPoint respawnPoint = respawnPoints.random();
+        player.health.resetHp();
+        respawnPoint.getPosition(aux);
+        player.setPosition(aux.x, aux.y);
     }
 }

@@ -14,7 +14,8 @@ public class BattleManager {
     private final Label[] playerHp = new Label[2];
     private final Player[] players = new Player[2];
     private final Stage stage;
-    public final DeathHandler deathHandler = new DeathHandler(players);
+    private final DeathHandler deathHandler;
+
     /**
      * this is to avoid creating a string every frame for no reason
      */
@@ -28,6 +29,7 @@ public class BattleManager {
         }
 
         generateLabels();
+        deathHandler = new DeathHandler(stuff);
     }
 
     private void generateLabels() {

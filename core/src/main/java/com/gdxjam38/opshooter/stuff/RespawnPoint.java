@@ -4,6 +4,7 @@ import static com.gdxjam38.opshooter.Constants.TILE_SIZE;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
@@ -19,5 +20,9 @@ public class RespawnPoint {
 
     public void draw(ShapeDrawer shapeDrawer) {
         shapeDrawer.rectangle(rectangle, color);
+    }
+
+    public Vector2 getPosition(Vector2 result) {
+        return rectangle.getPosition(result);
     }
 }
