@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.gdxjam38.opshooter.Direction;
 import com.gdxjam38.opshooter.stuff.player.components.AttackControl;
 import com.gdxjam38.opshooter.stuff.player.components.Health;
@@ -26,6 +27,7 @@ public class Player {
         this.leftSprite = leftSprite;
         this.rightSprite = rightSprite;
         sprite = new Sprite(downSprite);
+        sprite.setOriginCenter();
         health = new Health(250);
         attackControl = new AttackControl();
         this.upKey = upKey;
@@ -84,6 +86,7 @@ public class Player {
         }
         sprite.setColor(1, greenness, blueness, 1);
         sprite.setPosition(hitBox.x, hitBox.y);
+        sprite.setOriginCenter();
     }
 
     public void takeDamage(int damage) {
@@ -91,5 +94,9 @@ public class Player {
         greenness = 0f;
         blueness = 0f;
         sprite.setColor(1f, greenness, blueness, 1f);
+    }
+
+    public Vector2 getCenter(Vector2 result) {
+        return result.set(sprite.getX() + sprite.getOriginX(), sprite.getY() + sprite.getOriginY());
     }
 }

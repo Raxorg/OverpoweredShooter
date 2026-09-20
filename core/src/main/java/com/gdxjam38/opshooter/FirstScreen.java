@@ -1,5 +1,7 @@
 package com.gdxjam38.opshooter;
 
+import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
+
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -12,10 +14,7 @@ import com.gdxjam38.opshooter.logic.FlagHandler;
 import com.gdxjam38.opshooter.logic.MatchTimer;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
-import com.gdxjam38.opshooter.stuff.player.Player;
 import com.gdxjam38.opshooter.stuff.weapons.Weapon;
-
-import static com.gdxjam38.opshooter.Constants.CLEAR_COLOR;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -65,10 +64,10 @@ public class FirstScreen extends ScreenAdapter {
         battleManager.update();
         movementHandler.update(delta);
         attackHandler.update(delta);
-        flagHandler.update(delta);
+        flagHandler.update();
         stage.act(delta);
-        for (Player player : stuff.getPlayers()) {
-            player.update(delta);
+        for (int i = 0; i < stuff.getPlayers().size; i++) {
+            stuff.getPlayers().get(i).update(delta);
         }
     }
 

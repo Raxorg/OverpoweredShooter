@@ -80,5 +80,4 @@ public class Stuff {
     public Array<Player> getPlayers() {
         return players;
     }
-
 }

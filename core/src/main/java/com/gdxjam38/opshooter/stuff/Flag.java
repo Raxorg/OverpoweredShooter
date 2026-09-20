@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Flag {
 
     private final Sprite sprite;
+    private boolean captured;
 
     public Flag(Texture flagTex) {
         sprite = new Sprite(flagTex);
@@ -24,6 +25,14 @@ public class Flag {
     }
 
     public Vector2 getCenter(Vector2 result) {
-        return result.set(sprite.getOriginX(), sprite.getOriginY());
+        return result.set(sprite.getX() + sprite.getOriginX(), sprite.getY() + sprite.getOriginY());
+    }
+
+    public boolean isCaptured() {
+        return captured;
+    }
+
+    public void setCarried(boolean captured) {
+        this.captured = captured;
     }
 }
