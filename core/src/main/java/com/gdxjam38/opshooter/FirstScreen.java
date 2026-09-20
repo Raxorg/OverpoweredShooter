@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gdxjam38.opshooter.logic.AttackHandler;
 import com.gdxjam38.opshooter.logic.BattleManager;
+import com.gdxjam38.opshooter.logic.FlagHandler;
 import com.gdxjam38.opshooter.logic.MatchTimer;
 import com.gdxjam38.opshooter.logic.MovementHandler;
 import com.gdxjam38.opshooter.stuff.Stuff;
@@ -23,9 +24,11 @@ public class FirstScreen extends ScreenAdapter {
 
     private final SpriteBatch spriteBatch;
     private final ShapeRenderer renderer;
+
     private final Stuff stuff;
     private final MovementHandler movementHandler;
     private final AttackHandler attackHandler;
+    private final FlagHandler flagHandler;
     private final Stage stage;
     private final BattleManager battleManager;
     private final MatchTimer timer;
@@ -36,6 +39,7 @@ public class FirstScreen extends ScreenAdapter {
         stuff = new Stuff();
         movementHandler = new MovementHandler(stuff);
         attackHandler = new AttackHandler(stuff);
+        flagHandler = new FlagHandler(stuff);
         stage = new Stage(new FitViewport(1200, 700));
         battleManager = new BattleManager(stuff, stage);
         timer = new MatchTimer(stage);
@@ -61,6 +65,7 @@ public class FirstScreen extends ScreenAdapter {
         battleManager.update();
         movementHandler.update(delta);
         attackHandler.update(delta);
+        flagHandler.update(delta);
         stage.act(delta);
         for (Player player : stuff.getPlayers()) {
             player.update(delta);
@@ -72,6 +77,8 @@ public class FirstScreen extends ScreenAdapter {
 
         spriteBatch.begin();
         stuff.getFloor().draw(spriteBatch);
+        stuff.getRedFlag().draw(spriteBatch);
+        stuff.getBlueFlag().draw(spriteBatch);
         for (int i = 0; i < stuff.getPlayers().size; i++) {
             stuff.getPlayers().get(i).attackControl.draw(spriteBatch);
         }

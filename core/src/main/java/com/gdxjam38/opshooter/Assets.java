@@ -12,6 +12,8 @@ public class Assets {
     public static final Texture arrow = new Texture(Gdx.files.internal("arrow2.png"));
     public static final Texture playerSheet = new Texture(Gdx.files.internal("playerSheet.png"));
     public static final Texture gun = new Texture(Gdx.files.internal("gun1.png"));
+    public static final Texture redFlag = new Texture(Gdx.files.internal("redFlag.png"));
+    public static final Texture blueFlag = new Texture(Gdx.files.internal("blueFlag.png"));
 
     /**
      * Disposes {@link FirstScreen} related assets

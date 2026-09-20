@@ -1,18 +1,26 @@
 package com.gdxjam38.opshooter.stuff;
 
+import static com.badlogic.gdx.Input.Keys.A;
+import static com.badlogic.gdx.Input.Keys.D;
+import static com.badlogic.gdx.Input.Keys.DOWN;
+import static com.badlogic.gdx.Input.Keys.LEFT;
+import static com.badlogic.gdx.Input.Keys.RIGHT;
+import static com.badlogic.gdx.Input.Keys.S;
+import static com.badlogic.gdx.Input.Keys.UP;
+import static com.badlogic.gdx.Input.Keys.W;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.stuff.player.Player;
 import com.gdxjam38.opshooter.stuff.touchables.Obstacle;
 
-import static com.badlogic.gdx.Input.Keys.*;
-
 public class Stuff {
 
     private final Floor floor;
     private final Player player1, player2;
     private final Obstacle bush;
+    private final Flag redFlag, blueFlag;
     private final Array<Player> players;
 
     public Stuff() {
@@ -34,6 +42,12 @@ public class Stuff {
 
         bush = new Obstacle(Assets.bush1, 75f, 75f);
         bush.setPosition(200f, 100f);
+
+        redFlag = new Flag(Assets.redFlag);
+        redFlag.setPosition(1200f - 150f, 700f - 150f);
+        blueFlag = new Flag(Assets.blueFlag);
+        blueFlag.setPosition(75f, 75f);
+
         players = new Array<>();
         players.add(player1);
         players.add(player2);
@@ -53,6 +67,14 @@ public class Stuff {
 
     public Obstacle getBush() {
         return bush;
+    }
+
+    public Flag getRedFlag() {
+        return redFlag;
+    }
+
+    public Flag getBlueFlag() {
+        return blueFlag;
     }
 
     public Array<Player> getPlayers() {
