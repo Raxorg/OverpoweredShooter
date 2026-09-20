@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.gdxjam38.opshooter.stuff.player.Player;
+import com.gdxjam38.opshooter.stuff.player.Player;import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 
 import java.util.Objects;
 
@@ -15,7 +15,6 @@ public abstract class Projectile {
     protected final Vector2 position = new Vector2();
     protected final Player owner;
     public final Rectangle hitBox;
-    private boolean dead = false;
     protected float speed = 1024;
 
     public Projectile(Player owner, float rotation) {
@@ -30,20 +29,18 @@ public abstract class Projectile {
     }
 
     public void draw(ShapeRenderer renderer) {
-        if (dead) return;
         renderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
-    protected abstract void onTouch(Player player);
+    protected abstract void onTouch(Player target);
 
 
     public void update(Array<Player> players, float delta) {
-        if (dead) return;
         for (Player player : players) {
             if (player == owner) continue;
             if (hitBox.overlaps(player.hitBox)) {
                 onTouch(player);
-                dead = true;
+                Weapon.destroy(this);
                 return;
             }
         }

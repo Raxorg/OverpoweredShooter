@@ -10,7 +10,7 @@ public class TeleportProjectile extends Projectile{
     }
 
     @Override
-    protected void onTouch(Player player) {
-        owner.hitBox.setPosition(player.hitBox.x, player.hitBox.y);
+    protected void onTouch(Player target) {
+        owner.hitBox.setPosition(target.hitBox.x, target.hitBox.y);
     }
 }

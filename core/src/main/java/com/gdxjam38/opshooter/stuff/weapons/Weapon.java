@@ -23,9 +23,13 @@ public abstract class Weapon {
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                projectiles.removeValue(projectile, false);
+                destroy(projectile);
             }
         }, lifeTime);
+    }
+
+    public static void destroy(Projectile projectile){
+        projectiles.removeValue(projectile, false);
     }
 
 }
