@@ -23,7 +23,7 @@ import space.earlygrey.shapedrawer.ShapeDrawer;
 /**
  * First screen of the application. Displayed after the application is created.
  */
-public class FirstScreen extends ScreenAdapter {
+public class GameScreen extends ScreenAdapter {
 
     private final SpriteBatch spriteBatch;
     private final ShapeRenderer renderer;
@@ -40,7 +40,7 @@ public class FirstScreen extends ScreenAdapter {
 
     private static final boolean DEBUG = false;
 
-    public FirstScreen() {
+    public GameScreen() {
         spriteBatch = new SpriteBatch();
         renderer = new ShapeRenderer();
         shapeDrawer = new ShapeDrawer(spriteBatch, new TextureRegion(Assets.pixel));
@@ -61,7 +61,7 @@ public class FirstScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        System.out.println("FirstScreen show() called");
+        System.out.println("GameScreen show() called");
         timer.setCounting(true);
     }
 
@@ -139,15 +139,15 @@ public class FirstScreen extends ScreenAdapter {
     @Override
     public void hide() {
         // This method is called when another screen replaces this one.
-        System.out.println("FirstScreen hide() called");
+        System.out.println("GameScreen hide() called");
     }
 
     @Override
     public void dispose() {
-        System.out.println("FirstScreen dispose() called");
+        System.out.println("GameScreen dispose() called");
         renderer.dispose();
         spriteBatch.dispose();
         stage.dispose();
-        Assets.disposeFirst();
+        Assets.disposeGameAssets();
     }
 }

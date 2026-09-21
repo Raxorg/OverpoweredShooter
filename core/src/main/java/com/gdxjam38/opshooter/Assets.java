@@ -22,13 +22,14 @@ public class Assets {
     public static final Texture bullet = new Texture(Gdx.files.internal("bullet.png"));
     public static final Texture bluePlatform = new Texture(Gdx.files.internal("bluePlatform.png"));
     public static final Texture redPlatform = new Texture(Gdx.files.internal("redPlatform.png"));
+    public static final Texture splash = new Texture(Gdx.files.internal("splash.png"));
 
     public static final Sound gunShot = Gdx.audio.newSound(Gdx.files.internal("audio/gun_shoot_1.wav"));
 
     /**
-     * Disposes {@link FirstScreen} related assets
+     * Disposes {@link GameScreen} related assets
      */
-    public static void disposeFirst() {
+    public static void disposeGameAssets() {
         skin.dispose();
         tile1.dispose();
         bush1.dispose();
@@ -48,7 +49,7 @@ public class Assets {
     /**
      * Disposes {@link SplashScreen} related assets
      */
-    public static void disposeSplash() {
-        // TODO: 9/16/2026 Dispose splash assets
+    public static void disposeSplashAssets() {
+        splash.dispose();
     }
 }
