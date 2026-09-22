@@ -5,13 +5,24 @@ import com.gdxjam38.opshooter.stuff.weapons.Weapon;
 
 import java.util.Objects;
 
+import static com.gdxjam38.opshooter.Constants.INVENTORY_MAX_CAPACITY;
+
 public class Inventory {
 
     private final Array<Weapon> inventory = new Array<>();
     private int currentWeapon = 0;
 
-    public void addWeapon(Weapon weapon) {
+    /**
+     * add a weapon to the inventory, 4 weapons max.
+     *
+     * @param weapon the weapon to add to the inventory
+     * @return true if the weapon was successfully added, false otherwise
+     * @throws NullPointerException if the weapon passed was null
+     */
+    public boolean addWeapon(Weapon weapon) {
+        if (inventory.size >= INVENTORY_MAX_CAPACITY) return false;
         inventory.add(Objects.requireNonNull(weapon, "weapon cannot be null"));
+        return true;
     }
 
     /**

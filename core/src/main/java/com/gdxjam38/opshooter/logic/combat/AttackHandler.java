@@ -1,4 +1,4 @@
-package com.gdxjam38.opshooter.logic;
+package com.gdxjam38.opshooter.logic.combat;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

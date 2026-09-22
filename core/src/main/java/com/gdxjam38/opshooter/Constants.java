@@ -16,4 +16,5 @@ public class Constants {
     public static final int PLAYER_STARTING_HEALTH = 3;
     public static final float BULLETS_LIFE_SPAN = 10;
     public static final float MATCH_TIME_LIMIT = 90;
+    public static final int INVENTORY_MAX_CAPACITY = 4;
 }

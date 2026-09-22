@@ -1,4 +1,4 @@
-package com.gdxjam38.opshooter.logic;
+package com.gdxjam38.opshooter.logic.combat;
 
 import static com.badlogic.gdx.graphics.Color.BLUE;
 import static com.badlogic.gdx.graphics.Color.RED;
@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.gdxjam38.opshooter.Assets;
+import com.gdxjam38.opshooter.logic.FlagHandler;
+import com.gdxjam38.opshooter.logic.MatchTimer;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
 

@@ -1,7 +1,8 @@
-package com.gdxjam38.opshooter.logic;
+package com.gdxjam38.opshooter.logic.combat;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.gdxjam38.opshooter.logic.FlagHandler;
 import com.gdxjam38.opshooter.stuff.RespawnPoint;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
