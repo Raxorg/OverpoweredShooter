@@ -12,7 +12,7 @@ public class Constants {
     public static final float PLAYER_WIDTH = TILE_SIZE;
     public static final float PLAYER_HEIGHT = TILE_SIZE;
     public static final float OBSTACLE_SIZE = TILE_SIZE;
-    public static final float PLAYER_SPEED = 128f;
+    public static final float PLAYER_SPEED = 150f;
     public static final int PLAYER_STARTING_HEALTH = 3;
     public static final float BULLETS_LIFE_SPAN = 10;
     public static final float MATCH_TIME_LIMIT = 90;
