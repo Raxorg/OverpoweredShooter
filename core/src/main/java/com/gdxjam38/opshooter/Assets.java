@@ -23,6 +23,7 @@ public class Assets {
     public static final Texture bluePlatform = new Texture(Gdx.files.internal("bluePlatform.png"));
     public static final Texture redPlatform = new Texture(Gdx.files.internal("redPlatform.png"));
     public static final Texture splash = new Texture(Gdx.files.internal("splash.png"));
+    public static final Texture heart = new Texture(Gdx.files.internal("heart.png"));
 
     public static final Sound gunShot = Gdx.audio.newSound(Gdx.files.internal("audio/gun_shoot_1.wav"));
 
@@ -44,6 +45,7 @@ public class Assets {
         bluePlatform.dispose();
         redPlatform.dispose();
         gunShot.dispose();
+        heart.dispose();
     }
 
     /**

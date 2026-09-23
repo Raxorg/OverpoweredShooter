@@ -110,6 +110,7 @@ public class GameScreen extends ScreenAdapter {
         for (int i = 0; i < stuff.getObstacles().size; i++) {
             stuff.getObstacles().get(i).draw(spriteBatch);
         }
+        battleManager.battleGUI.draw(spriteBatch);
         spriteBatch.end();
 
         renderer.begin(ShapeRenderer.ShapeType.Line);

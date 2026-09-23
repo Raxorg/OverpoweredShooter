@@ -1,70 +1,30 @@
 package com.gdxjam38.opshooter.logic.combat;
 
-import static com.badlogic.gdx.graphics.Color.BLUE;
-import static com.badlogic.gdx.graphics.Color.RED;
-import static com.badlogic.gdx.graphics.Color.WHITE;
-
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.gdxjam38.opshooter.Assets;
 import com.gdxjam38.opshooter.logic.FlagHandler;
 import com.gdxjam38.opshooter.logic.MatchTimer;
 import com.gdxjam38.opshooter.stuff.Stuff;
 import com.gdxjam38.opshooter.stuff.player.Player;
 
-import java.util.Objects;
 
 public class BattleManager {
-
-    private final Label[] playerHp = new Label[2];
     private final Player[] players = new Player[2];
-    private final Stage stage;
     private final DeathHandler deathHandler;
-
-    /**
-     * this is to avoid creating a string every frame for no reason
-     */
-    private final int[] changedHp = new int[2];
+    public final BattleGUI battleGUI;
 
     public BattleManager(Stuff stuff, Stage stage) {
-        this.stage = Objects.requireNonNull(stage, "Stage cannot be null");
-
         for (int i = 0; i < stuff.getPlayers().size; i++) {
             players[i] = stuff.getPlayers().get(i);
         }
 
-        generateLabels();
+        battleGUI = new BattleGUI(stage, players);
         deathHandler = new DeathHandler(stuff);
     }
 
-    private void generateLabels() {
-        Table table = new Table();
-        table.bottom();
-        table.setFillParent(true);
-
-        playerHp[0] = new Label("", Assets.skin);
-        playerHp[0].setColor(BLUE.cpy().lerp(WHITE, 0.75f));
-        playerHp[1] = new Label("", Assets.skin);
-        playerHp[1].setColor(RED.cpy().lerp(WHITE, 0.75f));
-
-        for (Label playerHp : playerHp) {
-            table.add(playerHp).row();
-        }
-        stage.addActor(table);
-    }
 
     public void update() {
-        updateLabels();
+        battleGUI.update();
         deathHandler.update();
-    }
-
-    private void updateLabels() {
-        for (int i = 0; i < playerHp.length; i++) {
-            if (changedHp[i] == players[i].health.getHp()) continue;
-            playerHp[i].setText("Player " + (i + 1) + " health: " + players[i].health.getHp());
-            changedHp[i] = players[i].health.getHp();
-        }
     }
 
     private enum BattleState {
